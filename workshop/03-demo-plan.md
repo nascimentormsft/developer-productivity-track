@@ -12,17 +12,14 @@ Show Copilot's value in under 3 minutes with two simple, relatable tasks.
 ### Step-by-Step
 
 **Part A: Generate from Comment**
-1. Open an empty Python file
-2. Type the comment:
-   ```python
-   # Calculate compound interest given principal, annual rate, compounding frequency, and years
-   ```
-3. Press Enter and let Copilot suggest the function
-4. Tab to accept
+1. Open `demo_quickwin.py` (the comment is already written)
+2. Place your cursor at the end of the comment line and press Enter
+3. Start typing: `def calc`
+4. Let Copilot suggest the function body, Tab to accept
 5. Point out: correct parameters, type hints, docstring, formula
 
 **Part B: Explain Unfamiliar Code**
-1. Open `legacy_risk_calculator.py` (pre-prepared file with a dense 40-line function)
+1. Open `legacy_risk_calculator.py` (pre-prepared file with a dense 64-line function)
 2. Select the entire function
 3. Open Copilot Chat, type: `/explain`
 4. Show the explanation: what it does, the algorithm, edge cases
@@ -99,8 +96,8 @@ Rapid-fire demos showing six patterns in real code scenarios.
 
 **Pattern 1: Code Explanation (3 min)**
 1. Open `transaction_processor.py`
-2. Select `process_batch_transactions()` (a 50-line function)
-3. Inline chat (Ctrl+I): "Explain this function's logic and identify any potential issues"
+2. Select `process_batch_transactions()` (lines 42–137)
+3. Open Copilot Chat, type: `/explain`
 4. Show structured explanation with identified concerns
 
 **Pattern 2: Refactoring (3 min)**
@@ -193,6 +190,7 @@ Give me a comprehensive data quality report including:
 - Statistical outliers in amount
 - Date range coverage
 - Distribution of categorical fields
+- Duplicate transaction_id check
 ```
 → Shows targeted, actionable exploration
 
@@ -291,7 +289,7 @@ Generate pytest tests for the transform_transactions function:
 | Item | Status |
 |------|--------|
 | VS Code with Copilot extension (latest) | ☐ |
-| Python 3.11+ environment | ☐ |
+| Python 3.9+ environment | ☐ |
 | pandas, numpy, pytest installed | ☐ |
 | Synthetic dataset generated and accessible | ☐ |
 | Demo files pre-prepared and tested | ☐ |

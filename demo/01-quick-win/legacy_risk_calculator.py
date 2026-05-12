@@ -3,7 +3,7 @@ Legacy Risk Calculator Module.
 
 INSTRUCTIONS FOR PRESENTER:
 1. Open this file
-2. Select the entire `calculate_portfolio_var` function (lines 17-72)
+2. Select the entire `calculate_portfolio_var` function (lines 17-80)
 3. Open Copilot Chat and type: /explain
 4. Show the structured explanation Copilot produces
 5. Say: "This is 30 seconds vs. 15 minutes of reading and tracing."
