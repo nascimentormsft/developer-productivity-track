@@ -3,7 +3,7 @@
 **Time:** ~13 min  
 **Goal:** Explore four types of Copilot customizations that replace repetitive tasks with reusable, shareable configuration.
 
-**Setup:** Open this folder (`04-customizations/`) as your workspace root so Copilot can see the `.github/` and `.vscode/` folders.
+**Setup:** Open the repository root as your workspace so Copilot can see the root `.github/` and `.vscode/` folders.
 
 ---
 
@@ -11,7 +11,7 @@
 
 > Reusable prompt templates your entire team can invoke.
 
-1. Open [`.github/prompts/terraform-module.prompt.md`](.github/prompts/terraform-module.prompt.md)
+1. Open [`../../.github/prompts/terraform-module.prompt.md`](../../.github/prompts/terraform-module.prompt.md)
 2. Read the structure: YAML frontmatter (`description`) + template body with `{{variables}}`
 3. Open Copilot Chat and invoke the prompt:
    ```
@@ -31,7 +31,7 @@
 
 > Invisible guardrails that shape every Copilot interaction.
 
-1. Open [`.github/copilot-instructions.md`](.github/copilot-instructions.md)
+1. Open [`../../.github/copilot-instructions.md`](../../.github/copilot-instructions.md)
 2. Read through the standards: Python conventions, Terraform rules, CI/CD requirements
 3. Now ask Copilot Chat to write something:
    ```
@@ -52,7 +52,7 @@ You didn't mention any of these in your prompt — the instructions applied auto
 
 > Domain-specific knowledge packs that make Copilot an expert in your area.
 
-1. Open [`.vscode/skills/pandas-analysis/SKILL.md`](.vscode/skills/pandas-analysis/SKILL.md)
+1. Open [`../../.vscode/skills/pandas-analysis/SKILL.md`](../../.vscode/skills/pandas-analysis/SKILL.md)
 2. Read the domain rules: duplicate checks, EUR conversion rates, vectorized operations
 3. Now ask Copilot Chat:
    ```
@@ -73,7 +73,7 @@ This is your team's institutional knowledge — encoded, versioned, and shareabl
 
 > Autonomous multi-step workflows that follow your standards.
 
-1. Open [`.vscode/agents/pipeline-scaffolder.agent.md`](.vscode/agents/pipeline-scaffolder.agent.md)
+1. Open [`../../.vscode/agents/pipeline-scaffolder.agent.md`](../../.vscode/agents/pipeline-scaffolder.agent.md)
 2. Read the structure: description, tools, step-by-step instructions
 3. Switch to **Agent mode** in Copilot Chat (click the mode selector)
 4. Type:

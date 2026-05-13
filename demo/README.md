@@ -18,15 +18,17 @@ demo/
 │
 ├── 04-customizations/                   # Section 4: Customizations (13 min)
 │   ├── demo_instructions.py            # Presenter script with demo flow
-│   ├── .github/
-│   │   ├── copilot-instructions.md     # Part B: Team coding standards
-│   │   └── prompts/
-│   │       └── terraform-module.prompt.md  # Part A: Reusable prompt template
-│   └── .vscode/
-│       ├── skills/
-│       │   └── pandas-analysis/SKILL.md    # Part C: Domain knowledge skill
-│       └── agents/
-│           └── pipeline-scaffolder.agent.md # Part D: CI/CD pipeline agent
+│
+├── ../.github/
+│   ├── copilot-instructions.md         # Part B: Team coding standards
+│   └── prompts/
+│       └── terraform-module.prompt.md  # Part A: Reusable prompt template
+│
+└── ../.vscode/
+    ├── skills/
+    │   └── pandas-analysis/SKILL.md    # Part C: Domain knowledge skill
+    └── agents/
+        └── pipeline-scaffolder.agent.md # Part D: CI/CD pipeline agent
 │
 └── 05-labs/                             # Section 5: Choose Your Adventure (25 min)
     ├── track-a-pandas/                  # Track A: Data engineering
@@ -67,7 +69,7 @@ demo/
 3. `03-productivity-patterns/payment_gateway.py` → Debug + Multi-step
 
 ### 4. Customizations (Section 4 – 13 min)
-Open `04-customizations/` as workspace root. Follow `demo_instructions.py`:
+Keep the repository root open as workspace root. Follow `04-customizations/demo_instructions.py`:
 - **Part A:** Invoke the Terraform prompt template (3 min)
 - **Part B:** Show instructions enforcing coding standards (3 min)
 - **Part C:** Use the pandas skill for domain-aware analysis (3 min)

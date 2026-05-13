@@ -19,15 +19,15 @@ copilot-workshop/
 
 # IDE
 .vscode/
-!demo/04-customizations/.vscode/
-demo/04-customizations/.vscode/*
-!demo/04-customizations/.vscode/agents/
-!demo/04-customizations/.vscode/agents/*.agent.md
-!demo/04-customizations/.vscode/skills/
-demo/04-customizations/.vscode/skills/*
-!demo/04-customizations/.vscode/skills/*/
-demo/04-customizations/.vscode/skills/*/*
-!demo/04-customizations/.vscode/skills/*/SKILL.md
+!.vscode/
+.vscode/*
+!.vscode/agents/
+!.vscode/agents/*.agent.md
+!.vscode/skills/
+.vscode/skills/*
+!.vscode/skills/*/
+.vscode/skills/*/*
+!.vscode/skills/*/SKILL.md
 .idea/
 *.swp
 *.swo
