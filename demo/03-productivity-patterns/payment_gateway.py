@@ -1,24 +1,7 @@
 """
 Payment Gateway Module - Contains a Subtle Bug.
 
-INSTRUCTIONS FOR PRESENTER:
-- Pattern 4 (Debugging): Use Copilot Chat:
-  "This function is returning incorrect timestamps for transactions processed
-  near midnight UTC. The amounts are correct but settlement_date is sometimes
-  one day off. Can you identify the bug and suggest a fix?"
-
-- Pattern 6 (Multi-step): Use Chat to add retry logic:
-  "I need to add retry logic to the payment_gateway.process_payment() function.
-  Requirements:
-  - Max 3 retries with exponential backoff
-  - Only retry on timeout or 5xx errors
-  - Log each retry attempt
-  - Raise after final failure with context
-  
-  Please provide:
-  1. The retry decorator
-  2. The updated function
-  3. Updated tests"
+Used in Patterns 4 (Debugging) and 6 (Multi-step). See GUIDE.md for exercises.
 """
 
 import logging

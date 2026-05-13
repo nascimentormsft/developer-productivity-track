@@ -1,13 +1,5 @@
-"""
-Demo 1: Quick Win - Generate a function from a comment.
-
-INSTRUCTIONS FOR PRESENTER:
-1. Open this file
-2. Place your cursor at the end of line 12 (the comment) and press Enter
-3. Start typing: def calc
-4. Let Copilot suggest the function body
-5. Tab to accept
-6. Point out: parameters, type hints, docstring, correct formula
-"""
+# Exercise A: Place your cursor at the end of the comment below, press Enter,
+# and start typing: def calc — then let Copilot suggest the rest.
+# See GUIDE.md for full instructions.
 
 # Calculate compound interest given principal, annual rate, compounding frequency, and years

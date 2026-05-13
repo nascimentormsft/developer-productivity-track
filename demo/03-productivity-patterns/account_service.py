@@ -1,17 +1,7 @@
 """
 Account Service Module - Needs Refactoring.
 
-INSTRUCTIONS FOR PRESENTER:
-- Pattern 2 (Refactoring): Select `validate_account_status()` → Ctrl+I:
-  "Refactor this to:
-  - Use early returns to reduce nesting
-  - Extract magic numbers to named constants
-  - Add appropriate error handling for a financial service"
-  
-- Pattern 3 (Test Generation): After refactoring, use Chat:
-  "/tests Generate pytest tests for the refactored validate_account_status function.
-  Include: happy path, boundary cases, invalid inputs, and edge cases for financial compliance.
-  Use parametrize for the boundary cases."
+Used in Patterns 2 (Refactoring) and 3 (Test Generation). See GUIDE.md for exercises.
 """
 
 from datetime import datetime, timezone, timedelta

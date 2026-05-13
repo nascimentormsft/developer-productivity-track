@@ -1,11 +1,7 @@
 """
 Transaction Processor Module - Financial Services Core Logic.
 
-INSTRUCTIONS FOR PRESENTER:
-- Pattern 1 (Code Explanation): Select `process_batch_transactions()` → /explain
-- Pattern 5 (Documentation): Select `process_batch_transactions()` → 
-  "Generate a comprehensive docstring including parameters, returns, raises, and a usage example"
-- Pattern 6 (Multi-step): Use chat to add retry logic to process_payment call
+Used in Patterns 1, 5, and 6. See GUIDE.md for exercises.
 """
 
 import logging
