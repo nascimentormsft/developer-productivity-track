@@ -11,6 +11,7 @@
   - Install Python 3.9+ with pandas, numpy, pytest
   - Clone the workshop repository (or confirm access to shared drive)
 - [ ] Test all demos end-to-end on the presentation machine
+- [ ] Prepare customization demo files (prompts, instructions, skills, agents) and verify they work
 - [ ] Prepare backup: screenshots/recordings of every demo in case Copilot is unavailable
 - [ ] Confirm projector/screen resolution and adjust font sizes accordingly
 - [ ] Prepare synthetic dataset and verify it loads correctly
@@ -20,6 +21,7 @@
 - [ ] Run through the full 90 minutes (time yourself)
 - [ ] Verify Copilot is responding well (check for service issues)
 - [ ] Ensure all demo files are in place and clean (reset any previous demo state)
+- [ ] Verify customization files (.prompt.md, .instructions.md, SKILL.md, .agent.md) are in correct folders
 - [ ] Test Wi-Fi / network at the venue (Copilot requires internet)
 - [ ] Prepare printed prompt library handouts (optional)
 - [ ] Charge laptop, bring adapter/dongle for projector
@@ -81,15 +83,15 @@ pip install pandas numpy pytest
 ### Pacing
 - **Sections 1–2** (Introduction + Prompting): Move briskly. These build anticipation.
 - **Section 3** (Patterns): Medium pace. Each pattern is a mini-demo. Don't over-explain.
-- **Section 4** (Pandas): Deliberate pace. This is the core. Narrate your thought process.
-- **Section 5** (Lab): Step back. Let attendees drive. Walk the room.
-- **Sections 6–7** (Advanced + Wrap): Quick and energizing. End strong.
+- **Section 4** (Customizations): Deliberate pace. Connect each customization to the team's real workflow (Azure DevOps, Terraform, CI/CD). This is the section most relevant to their daily work.
+- **Section 5** (Labs): Step back. Let attendees drive. Walk the room supporting both tracks. Check in on both Track A and Track B attendees equally.
+- **Section 6** (Wrap-up): Quick and energizing. End strong.
 
 ### Engagement Techniques
 - Ask "Who has used Copilot before?" at the start (calibrate your audience)
 - After each demo, pause 5 seconds: "Questions on this before we move on?"
-- During the pandas scenario, narrate your prompt strategy: "I'm adding constraints because..."
-- In the lab, ask advanced users to try stretch goals so they don't get bored
+- When introducing labs, ask: "Who works mostly with data? Who works mostly on applications?" to guide track selection
+- In the labs, walk the room supporting both tracks. Ask advanced users to try the other track as a stretch goal
 - Use "think-aloud" during demos: verbalize why you're writing each part of the prompt
 
 ### Handling Mixed Skill Levels
@@ -128,10 +130,10 @@ pip install pandas numpy pytest
 
 Priority order (cut from bottom):
 1. ~~Wrap-up~~ → Skip, share slides with habits listed
-2. ~~Advanced capabilities~~ → Skip entirely
-3. ~~Lab debrief~~ → Skip, let people continue on their own
-4. Keep the lab (even if shortened to 5 min)
-5. Never cut the pandas scenario—it's the core deliverable
+2. ~~Lab debrief~~ → Skip, let people continue on their own
+3. Keep the labs (even if shortened to 15 min) — attendees still pick one track
+4. Compress customizations demos (show 2 of 4 instead of all)
+5. Never cut the customizations section — it's a core deliverable
 
 ---
 

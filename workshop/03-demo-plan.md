@@ -3,7 +3,7 @@
 ## Demo 1: Quick Win (Section 1 – Fundamentals)
 
 ### Objective
-Show Copilot's value in under 3 minutes with two simple, relatable tasks.
+Show Copilot's value in under 2 minutes with two simple, relatable tasks.
 
 ### Setup
 - Open VS Code with a Python file (`demo_quickwin.py`)
@@ -28,6 +28,7 @@ Show Copilot's value in under 3 minutes with two simple, relatable tasks.
 ### Key Talking Points
 - "Notice I didn't have to leave my editor."
 - "The explanation is in plain English—great for code reviews and onboarding."
+- "We used Ask mode here — quick, one-shot interactions. We'll see Agent mode later in the customizations section."
 
 ---
 
@@ -92,15 +93,15 @@ Rapid-fire demos showing six patterns in real code scenarios.
   - `account_service.py` (needs refactoring)
   - `payment_gateway.py` (has a bug)
 
-### Step-by-Step
+### Step-by-Step (6 patterns, ~2 min each + 2 min recap = 15 min total)
 
-**Pattern 1: Code Explanation (3 min)**
+**Pattern 1: Code Explanation (2 min)**
 1. Open `transaction_processor.py`
 2. Select `process_batch_transactions()` (lines 42–137)
 3. Open Copilot Chat, type: `/explain`
 4. Show structured explanation with identified concerns
 
-**Pattern 2: Refactoring (3 min)**
+**Pattern 2: Refactoring (2 min)**
 1. Open `account_service.py` with a function that has:
    - Nested if/else (4 levels deep)
    - Magic numbers
@@ -114,7 +115,7 @@ Rapid-fire demos showing six patterns in real code scenarios.
    ```
 3. Show the clean result
 
-**Pattern 3: Test Generation (3 min)**
+**Pattern 3: Test Generation (2 min)**
 1. With the refactored function still visible
 2. Copilot Chat:
    ```
@@ -124,7 +125,7 @@ Rapid-fire demos showing six patterns in real code scenarios.
    ```
 3. Show generated tests with meaningful test names
 
-**Pattern 4: Debugging (3 min)**
+**Pattern 4: Debugging (2 min)**
 1. Open `payment_gateway.py` which has a subtle timezone bug
 2. Copilot Chat:
    ```
@@ -134,7 +135,7 @@ Rapid-fire demos showing six patterns in real code scenarios.
    ```
 3. Show Copilot identifying the naive vs. aware datetime issue
 
-**Pattern 5: Documentation (3 min)**
+**Pattern 5: Documentation (2 min)**
 1. Select `process_batch_transactions()`
 2. Inline chat: "Generate a comprehensive docstring including parameters, returns, raises, and a usage example"
 3. Show the docstring generated in context
@@ -158,129 +159,89 @@ Rapid-fire demos showing six patterns in real code scenarios.
 
 ---
 
-## Demo 4: Core Pandas Scenario (Section 4)
+## Demo 4: Customizations (Section 4)
 
 ### Objective
-End-to-end data engineering workflow demonstrating prompt progression throughout.
+Show how customizations replace repetitive tasks with reusable team assets, using real workflow scenarios (Terraform, CI/CD, Azure DevOps).
 
 ### Setup
-- Jupyter notebook or Python script
-- Synthetic dataset: `financial_transactions.csv` (pre-generated, ~10K rows)
-- pandas, numpy imported
+- Pre-prepared customization files in a `.github/` and `.vscode/` folder structure
+- Example Terraform module template
+- Example Azure DevOps pipeline YAML
 
 ### Step-by-Step
 
-**Step 1: Dataset Exploration (4 min)**
+**Part A: Custom Prompts (3 min)**
+1. Show the `.github/prompts/` folder structure
+2. Open a pre-prepared `terraform-module.prompt.md` file:
+   ```markdown
+   ---
+   description: "Generate a Terraform module following team conventions"
+   ---
+   Create a Terraform module for {{resource_type}} with:
+   - Variables file with descriptions and validation rules
+   - Main resource configuration following our naming convention: {project}-{env}-{resource}
+   - Outputs file exposing key attributes
+   - Use azurerm provider
+   - Apply standard tags: environment, team, cost-center, managed-by
+   - Include a README.md with usage example
+   ```
+3. Invoke the prompt from Copilot Chat
+4. Show how it generates a complete, convention-compliant Terraform module
+5. Say: "This prompt is now available to every team member. No more Slack messages asking 'what's our Terraform template?'"
 
-*Naive prompt:*
-```
-explore this dataset
-```
-→ Shows generic `.head()`, `.describe()` — not very useful
+**Part B: Custom Instructions (3 min)**
+1. Open `.github/copilot-instructions.md`:
+   ```markdown
+   # Team Coding Standards
+   - Use Python type hints for all function signatures
+   - Follow Google docstring style
+   - Use `pathlib` instead of `os.path`
+   - All Terraform resources must include standard tags
+   - Azure DevOps pipeline YAML must include security scanning stages
+   - Commit messages follow Conventional Commits format
+   ```
+2. Show how Copilot now automatically follows these rules when generating code
+3. Create a quick Python function and show type hints + docstring appear automatically
+4. Say: "Instructions are invisible guardrails. Set them once, forget about them."
 
-*Improved prompt:*
-```
-I have a financial transactions dataset loaded as `df` with columns:
-transaction_id, customer_id, amount, currency, transaction_type, 
-merchant_category, timestamp, is_flagged, account_balance.
+**Part C: Skills (3 min)**
+1. Open `.vscode/skills/pandas-analysis/SKILL.md` (pre-prepared):
+   ```markdown
+   # Pandas Financial Data Analysis Skill
+   When analyzing financial transaction data:
+   - Always check for duplicate transaction IDs first
+   - Convert amounts to EUR using standard rates
+   - Flag transactions > €50,000 for regulatory review
+   - Use vectorized operations, never iterrows()
+   - Standard aggregation: group by customer, month, category
+   ```
+2. Show how Copilot references this skill when working with pandas in the project
+3. Say: "This is your team's institutional knowledge, encoded and shareable."
 
-Give me a comprehensive data quality report including:
-- Missing values per column
-- Data type validation
-- Statistical outliers in amount
-- Date range coverage
-- Distribution of categorical fields
-- Duplicate transaction_id check
-```
-→ Shows targeted, actionable exploration
-
-**Step 2: Data Transformation (5 min)**
-
-*Naive prompt:*
-```
-clean the data
-```
-→ Generic, removes rows — not what we want
-
-*Constrained prompt:*
-```
-Transform the transactions DataFrame with these requirements:
-1. Convert timestamp to datetime, localize to UTC
-2. Create amount_eur column (convert USD at 0.92, GBP at 1.17)
-3. Fill missing merchant_category with 'UNKNOWN' (don't drop rows)
-4. Remove exact duplicate transaction_ids (keep first)
-5. Clip amount to [0, 500000] range (regulatory cap)
-
-Use method chaining. Add inline comments explaining each step.
-Return a new DataFrame, don't modify in place.
-```
-→ Precise, production-ready transformation code
-
-**Step 3: Feature Engineering (5 min)**
-
-*Prompt:*
-```
-Create these features from the transactions DataFrame for fraud detection:
-1. transaction_hour: hour of day from timestamp
-2. amount_zscore: z-score of amount within each customer_id group
-3. days_since_last_txn: days since customer's previous transaction
-4. rolling_7d_avg: 7-day rolling average amount per customer
-5. is_high_value: boolean, True if amount > 95th percentile for that merchant_category
-
-Ensure the code handles edge cases:
-- First transaction for a customer (days_since_last_txn = NaN is OK)
-- Customers with fewer than 7 days of history
-```
-→ Demonstrates constrained prompting with edge case handling
-
-**Step 4: Aggregation (4 min)**
-
-*Prompt:*
-```
-Create a monthly customer summary from the transactions DataFrame:
-- Group by customer_id and month (from timestamp)
-- Calculate: total_amount, transaction_count, unique_merchants, avg_transaction, max_transaction
-- Add month-over-month growth rate for total_amount
-- Sort by customer_id and month
-
-Output as a clean DataFrame with a MultiIndex reset.
-```
-→ Shows business-relevant aggregation
-
-**Step 5: Refactoring (4 min)**
-
-*Prompt:*
-```
-Refactor the data transformation code from above into a production-ready module:
-- Create a function `transform_transactions(df: pd.DataFrame) -> pd.DataFrame`
-- Create a function `engineer_features(df: pd.DataFrame) -> pd.DataFrame`  
-- Create a function `build_customer_summary(df: pd.DataFrame) -> pd.DataFrame`
-- Add type hints, docstrings, and input validation
-- Each function should raise ValueError with a descriptive message if input is invalid
-- Follow the single responsibility principle
-```
-→ From notebook exploration to production code
-
-**Step 6: Test Generation (3 min)**
-
-*Prompt:*
-```
-Generate pytest tests for the transform_transactions function:
-- Test with valid input (happy path)
-- Test currency conversion accuracy (USD, GBP → EUR)
-- Test that missing merchant_category is filled
-- Test that duplicates are removed (keep first)
-- Test amount clipping at boundaries (0 and 500000)
-- Test with empty DataFrame (should return empty, not error)
-- Use pytest fixtures for sample data
-- Include parametrize for currency conversion rates
-```
-→ Comprehensive test suite for data pipeline
+**Part D: Agents (4 min)**
+1. Open `.vscode/agents/pipeline-scaffolder.agent.md` (pre-prepared):
+   ```markdown
+   ---
+   description: "Scaffolds an Azure DevOps CI/CD pipeline with security scanning"
+   tools: ["editFiles", "runInTerminal"]
+   ---
+   You are a CI/CD pipeline scaffolding agent.
+   When asked to create a pipeline for a service:
+   1. Create azure-pipelines.yml with standard stages: build, test, security-scan, deploy
+   2. Include GitHub Advanced Security for Azure DevOps scanning
+   3. Include Trivy container image scanning
+   4. Add environment-specific deployment gates
+   5. Configure artifact publishing
+   ```
+2. Invoke the agent: "Create a CI/CD pipeline for the payments-api service"
+3. Show the agent creating the YAML file with all standard stages
+4. Say: "This is a 30-minute task reduced to 30 seconds — and it follows your standards every time."
 
 ### Key Talking Points
-- "Notice how each step builds on the last—this is how real data work flows."
-- "The prompt progression isn't just pedagogical—it's how you should actually work."
-- "Start vague when exploring, get precise when building."
+- "Customizations scale your team's expertise. The senior engineer's knowledge is available to everyone."
+- "Start with instructions (5 min to set up). Add prompts next. Skills and agents when you're ready."
+- "Think about your Azure DevOps workflows — what do you configure repeatedly?"
 
 ---
 
@@ -290,9 +251,11 @@ Generate pytest tests for the transform_transactions function:
 |------|--------|
 | VS Code with Copilot extension (latest) | ☐ |
 | Python 3.9+ environment | ☐ |
-| pandas, numpy, pytest installed | ☐ |
-| Synthetic dataset generated and accessible | ☐ |
-| Demo files pre-prepared and tested | ☐ |
+| pandas, numpy, pytest, fastapi, uvicorn, httpx installed | ☐ |
+| Synthetic dataset generated (`05-labs/track-a-pandas/`) | ☐ |
+| Demo files 01–04 pre-prepared and tested | ☐ |
+| `04-customizations/` folder openable as workspace root | ☐ |
+| Track B backend starts (`uvicorn main:app --reload`) | ☐ |
 | Backup screenshots of all demo outputs | ☐ |
 | Font size set to 16+ for visibility | ☐ |
 | Dark theme for projector readability | ☐ |

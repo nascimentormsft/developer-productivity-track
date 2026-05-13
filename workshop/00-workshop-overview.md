@@ -24,8 +24,9 @@ By the end of this workshop, attendees will be able to:
 1. Use GitHub Copilot effectively across common developer workflows (code generation, refactoring, testing, debugging)
 2. Write structured prompts that produce higher-quality suggestions
 3. Apply Copilot to data engineering tasks using Python and pandas
-4. Identify when and how to use different Copilot interaction modes
-5. Recognize advanced capabilities they can explore independently
+4. Distinguish between Agent, Ask, and Plan modes and select the right model for each task
+5. Configure Copilot customizations (prompts, instructions, skills, agents) to automate repetitive team workflows
+6. Recognize how Copilot accelerates tasks across the team's toolchain—Azure DevOps, Terraform, CI/CD pipelines, and documentation
 
 ### Business Value (Productivity Focus)
 
@@ -36,6 +37,18 @@ By the end of this workshop, attendees will be able to:
 | Onboarding to new codebases | Accelerated via code explanation |
 | Documentation debt | Lower barrier to generate docs |
 | Context switching | Reduced by in-IDE assistance |
+| Infrastructure as Code (Terraform) | Faster authoring for non-specialists |
+| CI/CD pipeline configuration | Accelerated setup and troubleshooting |
+| Architecture documentation | Reduced friction with AI-assisted generation |
+
+### Company Workflow Context
+
+This workshop is tailored to the team's real workflow:
+- **Project management:** Azure DevOps for every project
+- **Infrastructure:** Platform engineering provisions subscriptions; teams own their Terraform IaC (mixed proficiency)
+- **Architecture:** Teams design their own architecture but struggle with documentation
+- **CI/CD:** Teams configure their own pipelines, including GitHub Advanced Security for Azure DevOps and Trivy scanning
+- **Opportunity:** Copilot can accelerate each of these areas — from writing Terraform modules to generating pipeline YAML and architecture docs
 
 ### Prerequisites
 - VS Code installed with GitHub Copilot extension enabled

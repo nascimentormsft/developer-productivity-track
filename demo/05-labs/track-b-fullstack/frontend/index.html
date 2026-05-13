@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Transactions</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Financial Transactions Dashboard</h1>
+    </header>
+
+    <main>
+        <section id="transactions-section">
+            <h2>Recent Transactions</h2>
+            <div class="controls">
+                <input type="text" id="filter-customer" placeholder="Filter by Customer ID...">
+                <button id="btn-load" onclick="loadTransactions()">Load Transactions</button>
+            </div>
+            <table id="transactions-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer</th>
+                        <th>Amount</th>
+                        <th>Currency</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-body">
+                    <!-- Populated by app.js -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- 
+        ═══════════════════════════════════════════════════════════════
+        LAB EXERCISE: In Part 3, you'll add a Customer Summary section 
+        here using Agent mode. The section should include:
+        - An input field for customer ID
+        - A "Get Summary" button
+        - A div to display the summary card
+        ═══════════════════════════════════════════════════════════════
+        -->
+
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>

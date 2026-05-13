@@ -20,19 +20,37 @@
 - **Title:** Across the Development Lifecycle
 - **Key message:** Copilot isn't just for writing new code
 - **Visual:** SDLC diagram with highlighted touch points: Plan → Code → Test → Debug → Document → Deploy
-- **Speaker notes:** Most people think Copilot = code generation. But the biggest productivity gains often come from explanation, refactoring, and test generation.
+- **Speaker notes:** Most people think Copilot = code generation. But the biggest productivity gains often come from explanation, refactoring, and test generation. And for your workflow — think about how it helps with Terraform, CI/CD pipelines, and architecture docs too.
 
-### Slide 1.4 – Interaction Modes
+### Slide 1.4 – Agent, Ask, and Plan
+- **Title:** Three Ways to Work with Copilot
+- **Key message:** Choose the right mode for the complexity of your task
+- **Bullets:**
+  - **Ask:** Quick questions, explanations, one-shot code generation
+  - **Agent:** Multi-step autonomous workflows — edits files, runs commands, iterates
+  - **Plan:** Design a step-by-step approach before executing complex changes
+- **Speaker notes:** Ask is your go-to for 80% of tasks. Agent is powerful when you need Copilot to act across multiple files — for example, scaffolding a Terraform module with variables, outputs, and a README. Plan is best when you want to review the approach before Copilot starts making changes.
+
+### Slide 1.5 – Model Selection
+- **Title:** How to Select a Model
+- **Key message:** Different models excel at different tasks — pick the right one
+- **Bullets:**
+  - Model selector in the Copilot Chat panel
+  - Faster models for quick edits and completions
+  - More capable models for complex reasoning and multi-step tasks
+  - Experiment and find what works best for your workflow
+- **Speaker notes:** You can switch models directly in the chat. For a quick code explanation, a fast model works fine. For generating a complex Terraform module or refactoring a pipeline, you may want a more capable model.
+
+### Slide 1.6 – Interaction Modes
 - **Title:** How You Interact with Copilot
 - **Key message:** Choose the right mode for the task
 - **Bullets:**
   - **Inline completions:** Tab-to-accept as you type
   - **Chat panel:** Multi-turn conversations, ask questions
   - **Inline chat:** Quick edits in context (Ctrl+I)
-  - **CLI (bonus):** Terminal assistance
 - **Speaker notes:** We'll use all of these today. The key insight: inline completions for flow, chat for exploration and complex tasks.
 
-### Slide 1.5 – 🎬 DEMO: Quick Win
+### Slide 1.7 – 🎬 DEMO: Quick Win
 - **Title:** [Live Demo]
 - **Demo marker:** Generate function from comment + explain unfamiliar code
 - **Speaker notes:** "Let me show you the simplest thing Copilot can do that saves time every single day."
@@ -134,91 +152,113 @@
 
 ---
 
-## Section 4: Core Pandas Scenario
+## Section 4: Customizations
 
-### Slide 4.1 – Scenario Introduction
-- **Title:** End-to-End: Financial Transaction Analysis
-- **Key message:** Let's apply everything we've learned to a real data engineering workflow
-- **Visual:** Dataset schema overview
-- **Speaker notes:** This is synthetic data modeled after real financial transaction patterns. We'll explore, transform, engineer features, aggregate, refactor, and test—all with Copilot.
-
-### Slide 4.2 – 🎬 DEMO: Dataset Exploration
-- **Title:** [Live Demo] Understanding Your Data with Copilot
-- **Demo marker:** Load data, ask Copilot to summarize, identify quality issues
-- **Speaker notes:** Start with a naive prompt, then show how adding context improves the output.
-
-### Slide 4.3 – 🎬 DEMO: Transformation & Feature Engineering
-- **Title:** [Live Demo] Cleaning and Enriching Data
-- **Demo marker:** Data cleaning, new calculated columns, business logic
-- **Speaker notes:** Show the progression: vague prompt → contextual prompt → constrained prompt.
-
-### Slide 4.4 – 🎬 DEMO: Aggregation & Business Metrics
-- **Title:** [Live Demo] From Raw Data to Insight
-- **Demo marker:** GroupBy operations, pivot tables, summary statistics
-- **Speaker notes:** Financial services love aggregation. Show monthly summaries, customer segmentation.
-
-### Slide 4.5 – 🎬 DEMO: Refactoring to Clean Functions
-- **Title:** [Live Demo] From Notebook to Production
-- **Demo marker:** Extract notebook code into reusable, typed functions
-- **Speaker notes:** This is where data engineers get the most value—moving from exploration to production code.
-
-### Slide 4.6 – 🎬 DEMO: Test Generation for Data Pipelines
-- **Title:** [Live Demo] Testing Data Transformations
-- **Demo marker:** Generate pytest tests for transformation functions
-- **Speaker notes:** Data pipeline tests are often neglected. Copilot makes the barrier to entry almost zero.
-
-### Slide 4.7 – Prompt Progression Recap
-- **Title:** The Power of Better Prompts (Side by Side)
-- **Key message:** Same task, three prompt levels, dramatically different results
-- **Visual:** Three-column comparison: Naive | Contextual | Constrained
-- **Speaker notes:** This is the core lesson. Take this mindset back to your daily work.
-
----
-
-## Section 5: Hands-on Lab
-
-### Slide 5.1 – Lab Introduction
-- **Title:** Your Turn: Guided Exercise
-- **Key message:** Apply what you've seen—Copilot is ready, your dataset is loaded
+### Slide 4.1 – Why Customizations Matter
+- **Title:** Stop Repeating Yourself — Teach Copilot Your Workflow
+- **Key message:** Customizations turn one-off prompts into reusable team assets
 - **Bullets:**
-  - Task: Analyze customer spending patterns
-  - Time: ~8 minutes
-  - Help: Raise your hand or check the hint prompts
-  - Stretch goal available for fast finishers
-- **Speaker notes:** Walk the room. Help people who are stuck. Celebrate creative prompts.
+  - Every team has repetitive tasks: Terraform modules, pipeline YAML, architecture docs
+  - Copilot customizations let you encode that knowledge once and reuse it
+  - Four levels: prompts, instructions, skills, agents
+- **Speaker notes:** Think about the tasks your team does over and over. Writing Terraform for a new microservice. Configuring a CI/CD pipeline in Azure DevOps. Generating architecture documentation. What if Copilot already knew your team's conventions?
 
----
+### Slide 4.2 – 🎬 DEMO: Custom Prompts
+- **Title:** [Live Demo] Reusable Prompt Files (`.prompt.md`)
+- **Key message:** Save your best prompts as reusable files the whole team can use
+- **Demo marker:** Create a `.prompt.md` file for generating a Terraform module with team conventions
+- **Speaker notes:** Show creating a prompt file that generates a Terraform module following the team's naming conventions, tagging standards, and variable structure. Anyone on the team can invoke this prompt instead of writing it from scratch each time.
 
-## Section 6: Advanced Capabilities
-
-### Slide 6.1 – What's Next: Extending Copilot
-- **Title:** Advanced Capabilities (Preview)
-- **Key message:** Copilot is evolving—here's what's coming to boost productivity further
-- **Speaker notes:** This is a teaser, not a tutorial. Plant seeds for their continued exploration.
-
-### Slide 6.2 – Custom Instructions
-- **Title:** Teach Copilot Your Standards
+### Slide 4.3 – 🎬 DEMO: Custom Instructions
+- **Title:** [Live Demo] Teaching Copilot Your Standards
 - **Key message:** Define team conventions once, apply everywhere
 - **Bullets:**
-  - `.github/copilot-instructions.md`
+  - `.github/copilot-instructions.md` — project-wide instructions
+  - `.instructions.md` files — scoped to specific folders or file types
   - Coding standards, naming conventions, preferred patterns
-  - Team-wide consistency
-- **Speaker notes:** If your team has a style guide, encode it as instructions. Copilot will follow it.
+- **Demo marker:** Set up instructions for Azure DevOps work item format, coding standards, and Terraform conventions
+- **Speaker notes:** If your team has a style guide, encode it as instructions. Copilot will follow it consistently. Show how to set up instructions that enforce your Terraform naming conventions and ensure CI/CD pipeline YAML follows your org's template.
 
-### Slide 6.3 – Skills, Agents & Spec Kit
-- **Title:** The Expanding Ecosystem
+### Slide 4.4 – 🎬 DEMO: Skills
+- **Title:** [Live Demo] Domain-Specific Knowledge Packs
+- **Key message:** Package domain knowledge into reusable skills
 - **Bullets:**
-  - **Skills:** Domain-specific knowledge packs
-  - **Agents:** Multi-step autonomous workflows
-  - **Spec kit:** Document features before building them
-- **Key message:** These amplify productivity for complex, repeated, or large-scale tasks
-- **Speaker notes:** Don't try to adopt all of these at once. Start with instructions, then explore as needs arise.
+  - Markdown files that describe how to perform domain-specific tasks
+  - Copilot uses them as reference when relevant
+  - Example: pandas analysis skill for financial data workflows
+- **Demo marker:** Show a pandas analysis skill and how it improves Copilot's data engineering suggestions
+- **Speaker notes:** Skills are like giving Copilot a runbook. For your team, this could be a skill for financial data quality checks, or one for setting up a new microservice's Terraform + pipeline.
+
+### Slide 4.5 – 🎬 DEMO: Agents
+- **Title:** [Live Demo] Multi-Step Autonomous Workflows
+- **Key message:** Agents orchestrate complex, multi-file tasks end to end
+- **Bullets:**
+  - Custom agent modes with specific tools and instructions
+  - Example: CI/CD pipeline scaffolding agent
+  - Agent creates files, runs commands, iterates on errors
+- **Demo marker:** Show an agent that scaffolds a CI/CD pipeline YAML for Azure DevOps with GHAzDO security scanning and Trivy integration
+- **Speaker notes:** This is the most powerful customization. Imagine an agent that, given a service name, creates the full Azure DevOps pipeline YAML with your standard stages, security scanning (GHAzDO + Trivy), and deployment gates. That's what we'll demo.
+
+### Slide 4.6 – Customizations Summary
+- **Title:** Which Customization When?
+- **Visual:** Quick reference table: Customization → Use case → Team benefit
+- **Bullets:**
+  - **Prompts:** Reusable templates for common tasks (Terraform, pipelines)
+  - **Instructions:** Enforce standards automatically (coding style, naming)
+  - **Skills:** Domain knowledge for specialized workflows (data analysis)
+  - **Agents:** End-to-end automation for complex multi-step tasks (CI/CD setup)
+- **Speaker notes:** Start with instructions — they're the easiest to adopt and have the biggest immediate impact. Then add prompts for your most common tasks. Skills and agents come as your team matures.
 
 ---
 
-## Section 7: Wrap-up
+## Section 5: Hands-on Labs — Choose Your Adventure
 
-### Slide 7.1 – 5 Productivity Habits
+### Slide 5.1 – Choose Your Track
+- **Title:** Your Turn: Choose Your Adventure
+- **Key message:** Pick the lab that matches your daily work — or do both if you're fast
+- **Bullets:**
+  - **Track A: Pandas & Financial Data** — explore, transform, aggregate financial transactions; practice prompt progression
+  - **Track B: Full-Stack Application** — add a feature across a backend API and frontend; use Agent mode for multi-file changes
+  - Time: ~22 minutes of hands-on work + 3 min debrief
+  - Help: Raise your hand or check the hint prompts
+  - Fast finishers: start the other track!
+- **Visual:** Two-track diagram with audience profile suggestions
+- **Speaker notes:** Present both tracks in 2 minutes. Data engineers and analysts → Track A. App developers and full-stack engineers → Track B. Ambitious attendees can try both. Walk the room and support both tracks.
+
+### Slide 5.2 – Track A: Pandas Lab Overview
+- **Title:** Track A: Financial Transaction Analysis
+- **Key message:** Practice prompt progression on real data engineering tasks
+- **Bullets:**
+  - Dataset: 10K synthetic financial transactions
+  - Tasks: explore → transform → feature engineering → aggregate → refactor → test
+  - Technique: naive prompt → contextual → constrained
+  - Stretch goal: anomaly detection or time intelligence
+- **Speaker notes:** Brief orientation slide — attendees following Track A can reference this. Move on quickly.
+
+### Slide 5.3 – Track B: Full-Stack Lab Overview
+- **Title:** Track B: Frontend + Backend with Copilot
+- **Key message:** Use Agent mode for multi-file, cross-layer changes
+- **Bullets:**
+  - App: Python API backend + frontend that consumes it
+  - Tasks: understand API → add endpoint → connect frontend → generate tests
+  - Technique: Agent mode for orchestrating multi-file changes
+  - Stretch goal: add error handling and integration tests
+- **Speaker notes:** Brief orientation slide — attendees following Track B can reference this. Move on quickly.
+
+### Slide 5.4 – Joint Debrief
+- **Title:** What Did You Learn?
+- **Key message:** Different tasks, same core skills — prompting and context matter everywhere
+- **Bullets:**
+  - Track A: What prompting strategy worked for data tasks?
+  - Track B: How did Agent mode help with cross-layer changes?
+  - Both: What surprised you? What will you use tomorrow?
+- **Speaker notes:** 3-minute joint debrief. Ask one person from each track to share. Reinforce that the techniques transfer across domains.
+
+---
+
+## Section 6: Wrap-up
+
+### Slide 6.1 – 5 Productivity Habits
 - **Title:** Start Tomorrow With These 5 Habits
 - **Bullets:**
   1. Always provide context in your prompts
@@ -228,11 +268,12 @@
   5. Use inline chat (Ctrl+I) for quick, in-context edits
 - **Speaker notes:** These are the habits that separate casual users from power users.
 
-### Slide 7.2 – Next Steps
+### Slide 6.2 – Next Steps
 - **Title:** Continue Your Journey
 - **Bullets:**
   - Practice daily: pick one workflow per week to Copilot-ify
   - Set up custom instructions for your team
+  - Create reusable prompts for Terraform modules and pipeline configs
   - Explore GitHub Copilot documentation
   - Join your internal Copilot champions community
-- **Speaker notes:** Thank everyone. Remind them the materials will be shared.
+- **Speaker notes:** Thank everyone. Remind them the materials will be shared. Emphasize that the customizations they saw today are something they can start building for their own team's Azure DevOps and Terraform workflows immediately.

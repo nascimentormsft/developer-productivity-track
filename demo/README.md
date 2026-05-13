@@ -4,63 +4,98 @@
 
 ```
 demo/
-├── 01-quick-win/
-│   ├── demo_quickwin.py          # Empty file with a comment → let Copilot generate
-│   └── legacy_risk_calculator.py  # Dense function to /explain
+├── 01-quick-win/                        # Section 1: Introduction (3 min)
+│   ├── demo_quickwin.py                 # Empty file → let Copilot generate
+│   └── legacy_risk_calculator.py        # Dense function to /explain
 │
-├── 02-prompt-progression/
-│   └── demo_prompts.py           # Instructions for bad → better → best prompts
+├── 02-prompt-progression/               # Section 2: Prompt Engineering (5 min)
+│   └── demo_prompts.py                  # Bad → better → best prompt examples
 │
-├── 03-productivity-patterns/
-│   ├── transaction_processor.py   # Code explanation + documentation demos
-│   ├── account_service.py         # Refactoring + test generation demos
-│   └── payment_gateway.py         # Debugging + multi-step task demos
+├── 03-productivity-patterns/            # Section 3: Patterns (15 min)
+│   ├── transaction_processor.py         # Explain + Document demos
+│   ├── account_service.py              # Refactor + Test Generation demos
+│   └── payment_gateway.py             # Debug + Multi-step demos
 │
-├── 04-pandas-scenario/
-│   ├── generate_dataset.py        # Run once to create the CSV
-│   ├── financial_transactions.csv # 10K synthetic transactions (pre-generated)
-│   ├── pandas_demo.py            # Full demo script with prompts and backup code
-│   └── test_pandas_demo.py       # Backup tests for Step 6
+├── 04-customizations/                   # Section 4: Customizations (13 min)
+│   ├── demo_instructions.py            # Presenter script with demo flow
+│   ├── .github/
+│   │   ├── copilot-instructions.md     # Part B: Team coding standards
+│   │   └── prompts/
+│   │       └── terraform-module.prompt.md  # Part A: Reusable prompt template
+│   └── .vscode/
+│       ├── skills/
+│       │   └── pandas-analysis/SKILL.md    # Part C: Domain knowledge skill
+│       └── agents/
+│           └── pipeline-scaffolder.agent.md # Part D: CI/CD pipeline agent
 │
-└── 05-hands-on-lab/
-    ├── financial_transactions.csv # Same dataset for participants
-    ├── lab_exercise.py           # Participant starter file (with instructions)
-    └── lab_solution.py           # Solution (facilitator only, don't share!)
+└── 05-labs/                             # Section 5: Choose Your Adventure (25 min)
+    ├── track-a-pandas/                  # Track A: Data engineering
+    │   ├── generate_dataset.py          # Run once to create CSV
+    │   ├── financial_transactions.csv   # 10K synthetic transactions
+    │   └── lab_exercise.py             # Participant starter file
+    │
+    └── track-b-fullstack/               # Track B: Full-stack application
+        ├── lab_instructions.py          # Participant exercise guide
+        ├── requirements.txt             # Python dependencies
+        ├── backend/
+        │   ├── main.py                  # FastAPI application
+        │   ├── models.py                # Pydantic models
+        │   ├── routes/
+        │   │   └── transactions.py      # Transaction CRUD endpoints
+        │   └── tests/
+        │       └── test_transactions.py # Existing tests
+        └── frontend/
+            ├── index.html               # Dashboard page
+            ├── app.js                   # Frontend logic
+            └── styles.css               # Styling
 ```
 
-## Demo Flow
+## Demo Flow (Facilitator Demos: Sections 1–4)
 
 ### 1. Quick Win (Section 1 – 3 min)
-1. Open `01-quick-win/demo_quickwin.py` → cursor below comment → Tab to accept Copilot suggestion
+1. Open `01-quick-win/demo_quickwin.py` → cursor below comment → Tab to accept
 2. Open `01-quick-win/legacy_risk_calculator.py` → select function → `/explain`
 
 ### 2. Prompt Progression (Section 2 – 5 min)
 1. Open `02-prompt-progression/demo_prompts.py` for prompt reference
-2. Use Copilot Chat to type each prompt iteration
-3. Show how results improve dramatically
+2. Type each prompt iteration in Copilot Chat
+3. Show how results improve with intent + context + constraints
 
-### 3. Productivity Patterns (Section 3 – 18 min)
+### 3. Productivity Patterns (Section 3 – 15 min)
 1. `03-productivity-patterns/transaction_processor.py` → Explain + Document
 2. `03-productivity-patterns/account_service.py` → Refactor + Generate Tests
 3. `03-productivity-patterns/payment_gateway.py` → Debug + Multi-step
 
-### 4. Pandas Scenario (Section 4 – 25 min)
-1. Open `04-pandas-scenario/pandas_demo.py`
-2. Follow the numbered steps (each has naive + improved prompts)
-3. Use Copilot Chat to generate code at each step
-4. Show the prompt progression throughout
+### 4. Customizations (Section 4 – 13 min)
+Open `04-customizations/` as workspace root. Follow `demo_instructions.py`:
+- **Part A:** Invoke the Terraform prompt template (3 min)
+- **Part B:** Show instructions enforcing coding standards (3 min)
+- **Part C:** Use the pandas skill for domain-aware analysis (3 min)
+- **Part D:** Agent mode + pipeline scaffolder agent (4 min)
 
-### 5. Hands-on Lab (Section 5 – 10 min)
-- Participants open `05-hands-on-lab/lab_exercise.py`
-- They use Copilot Chat to complete the task
-- Solution in `lab_solution.py` (for facilitator reference only)
+## Hands-on Labs (Section 5 – 25 min)
+
+Participants choose one (or both):
+
+### Track A: Pandas & Financial Data
+- Open `05-labs/track-a-pandas/lab_exercise.py`
+- Generate the dataset first: `python generate_dataset.py`
+- Practice prompt progression on data engineering tasks
+
+### Track B: Full-Stack Application
+- Open `05-labs/track-b-fullstack/`
+- Install: `pip install -r requirements.txt`
+- Start backend: `cd backend && uvicorn main:app --reload`
+- Use Agent mode to add features across backend + frontend
 
 ## Pre-Flight Checklist
 
 - [ ] Python 3.9+ available
-- [ ] `pip install pandas numpy pytest` completed
-- [ ] `financial_transactions.csv` exists in both `04-pandas-scenario/` and `05-hands-on-lab/`
+- [ ] `pip install pandas numpy pytest fastapi uvicorn httpx` completed
+- [ ] `financial_transactions.csv` generated in `05-labs/track-a-pandas/`
+- [ ] Track B backend starts successfully (`uvicorn main:app --reload`)
 - [ ] VS Code font size ≥ 16
 - [ ] Copilot extension active and responding
-- [ ] All files open in correct tab order
+- [ ] Copilot Chat models available (Claude, GPT-4o)
+- [ ] All demo files open in correct tab order
 - [ ] Chat history cleared

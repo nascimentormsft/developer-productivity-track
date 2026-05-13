@@ -294,10 +294,180 @@ Provide the migration in phases:
 
 ---
 
+## Infrastructure as Code (Terraform)
+
+### Terraform Module Generation
+```
+Create a Terraform module for [resource_type] (Azure) with:
+- variables.tf: all inputs with descriptions, types, and validation rules
+- main.tf: resource configuration using naming convention {project}-{env}-{resource}
+- outputs.tf: expose key attributes (id, name, connection strings where applicable)
+- Provider: azurerm
+- Apply standard tags: environment, team, cost-center, managed-by = "terraform"
+- Include a README.md with usage example and required provider version
+```
+
+### Terraform Variable Validation
+```
+Add validation blocks to these Terraform variables:
+- environment: must be one of [dev, staging, production]
+- resource_group_name: must match Azure naming rules (alphanumeric, hyphens, 1-90 chars)
+- location: must be one of [westeurope, northeurope]
+- [custom variable]: [validation rule]
+
+Include meaningful error messages that help the user fix the issue.
+```
+
+### Terraform Refactoring
+```
+Refactor this Terraform configuration:
+- Extract repeated resource blocks into a module
+- Use for_each instead of count where resources have unique identifiers
+- Move hardcoded values to variables with sensible defaults
+- Add lifecycle rules where appropriate
+- Ensure state won't be destroyed during refactor (use moved blocks if needed)
+```
+
+---
+
+## CI/CD Pipelines (Azure DevOps)
+
+### Azure DevOps Pipeline Generation
+```
+Create an Azure DevOps pipeline YAML (azure-pipelines.yml) for a [language/framework] service:
+- Trigger: main branch + PR validation
+- Stages: build, test, security-scan, deploy-dev, deploy-staging, deploy-production
+- Security scanning:
+  - GitHub Advanced Security for Azure DevOps (code scanning, dependency scanning)
+  - Trivy container image scanning (if containerized)
+- Deploy to Azure [App Service / AKS / Container Apps]
+- Use environment approvals for staging and production
+- Include variable groups for secrets
+- Cache dependencies for faster builds
+```
+
+### Pipeline Debugging
+```
+This Azure DevOps pipeline is failing with the following error:
+[paste error]
+
+Pipeline context:
+- Stage: [stage name]
+- Agent pool: [pool]
+- Recent changes: [what changed]
+
+Diagnose the root cause and suggest a fix.
+```
+
+### Security Scanning Stage
+```
+Add a security scanning stage to this Azure DevOps pipeline:
+- GitHub Advanced Security for Azure DevOps:
+  - Code scanning (CodeQL)
+  - Dependency scanning
+  - Secret scanning
+- Trivy:
+  - Container image scan (fail on CRITICAL/HIGH)
+  - IaC scan for Terraform files
+- Fail the pipeline if critical vulnerabilities are found
+- Publish scan results as pipeline artifacts
+```
+
+---
+
+## Architecture Documentation
+
+### Architecture Decision Record (ADR)
+```
+Generate an Architecture Decision Record (ADR) for:
+- Decision: [describe the architectural decision]
+- Context: [what problem are we solving]
+- Options considered: [list at least 3 options]
+- Decision outcome: [which option and why]
+
+Follow the ADR template:
+# Title
+## Status
+## Context
+## Decision
+## Consequences
+## Alternatives Considered
+```
+
+### Architecture Diagram Description
+```
+Based on the code in this repository, generate a description of the system architecture:
+- List all services/components and their responsibilities
+- Describe the data flow between components
+- Identify external dependencies (Azure services, APIs, databases)
+- Note communication patterns (sync/async, protocols)
+- Format as a Mermaid diagram that can be embedded in the README
+
+Focus on the deployment architecture in Azure.
+```
+
+### Technical Documentation
+```
+Generate technical documentation for this [service/module/component]:
+- Overview: what it does and why it exists
+- Architecture: how it fits in the larger system
+- Key design decisions with rationale
+- API surface (if applicable)
+- Configuration and environment variables
+- Deployment: how it's deployed via [CI/CD pipeline]
+- Monitoring and observability
+- Runbook: common operational tasks
+
+Target audience: new team member onboarding.
+```
+
+---
+
+## Customizations
+
+### Writing Custom Instructions
+```
+I want to create a copilot-instructions.md for my team. Our conventions are:
+- Language: [Python/TypeScript/etc.]
+- Style: [Google style / PEP 8 / team standard]
+- Patterns: [describe preferred patterns]
+- Testing: [pytest / jest / etc.]
+- Infrastructure: [Terraform / Bicep / etc.]
+- Documentation: [docstring style, README requirements]
+
+Generate the instructions file content.
+```
+
+### Writing a Custom Prompt File
+```
+Create a .prompt.md file for [task description].
+The prompt should:
+- Have a clear description in the frontmatter
+- Accept variables via {{variable_name}} syntax
+- Include specific constraints relevant to our team
+- Follow our [coding/infrastructure/documentation] standards
+- Be reusable across different instances of this task
+```
+
+### Writing a Skill File
+```
+Create a SKILL.md file for [domain/workflow]:
+- When to use this skill (triggers)
+- When NOT to use this skill
+- Domain-specific knowledge and rules
+- Common patterns and examples
+- Edge cases and how to handle them
+
+The skill should help Copilot produce better results for [specific use case].
+```
+
+---
+
 ## Tips for Using This Library
 
 1. **Always customize** – Replace bracketed placeholders with your specific context
 2. **Add file references** – Use `@file` or `#selection` to point Copilot at relevant code
+3. **Team workflows** – Adapt the Terraform, CI/CD, and documentation prompts to your team's specific Azure DevOps setup
 3. **Iterate** – If the first output isn't right, refine your prompt rather than fixing the code manually
 4. **Combine patterns** – "Refactor this, then generate tests for the refactored version"
 5. **Save your best prompts** – Build your own team-specific prompt library over time
