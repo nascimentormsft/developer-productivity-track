@@ -24,6 +24,8 @@
 - Standard tags are included without you asking
 - This prompt is now available to every team member who has this file
 
+📖 **Learn more:** [Use prompt files in VS Code](https://code.visualstudio.com/docs/copilot/customization/prompt-files)
+
 ---
 
 ## Part B: Custom Instructions (3 min)
@@ -44,6 +46,8 @@
 - Does it use f-strings? (instructions say: "Prefer f-strings")
 
 You didn't mention any of these in your prompt — the instructions applied automatically.
+
+📖 **Learn more:** [Adding custom instructions for GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-custom-instructions)
 
 ---
 
@@ -66,6 +70,8 @@ You didn't mention any of these in your prompt — the instructions applied auto
 
 This is your team's institutional knowledge — encoded, versioned, and shareable.
 
+📖 **Learn more:** [Adding agent skills for GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills)
+
 ---
 
 ## Part D: Agents (4 min)
@@ -87,6 +93,8 @@ This is your team's institutional knowledge — encoded, versioned, and shareabl
 - Does it add environment-specific deployment gates (dev → staging → production)?
 - Does it follow the naming conventions from your instructions?
 
+📖 **Learn more:** [Creating and using custom agents for GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/create-custom-agents-for-cli)
+
 ---
 
 ## Key Takeaways
@@ -101,3 +109,12 @@ This is your team's institutional knowledge — encoded, versioned, and shareabl
 **Start small:** Add a `copilot-instructions.md` to one of your repos today. That's a 5-minute investment that improves every Copilot interaction for your whole team.
 
 **Think about your workflows:** What do you configure repeatedly in Azure DevOps, Terraform, or your CI/CD pipelines? That's your first prompt template.
+
+---
+
+## Further Reading
+
+| Topic | Documentation |
+|-------|---------------|
+| Instructions | [Adding repository custom instructions for GitHub Copilot](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot) |
+| Customize Copilot CLI | [Overview of customizing GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/overview) |
