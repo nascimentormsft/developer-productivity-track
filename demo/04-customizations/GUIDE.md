@@ -15,10 +15,9 @@
 2. Read the structure: YAML frontmatter (`description`) + template body with `{{variables}}`
 3. Open Copilot Chat and invoke the prompt:
    ```
-   @prompt terraform-module
+   /terraform-module Azure Storage Account
    ```
-4. When prompted for `resource_type`, enter: **Azure Storage Account**
-5. Review the generated Terraform module (variables.tf, main.tf, outputs.tf)
+4. Review the generated Terraform module (variables.tf, main.tf, outputs.tf)
 
 **What to notice:**
 - The naming convention (`{project}-{env}-{resource}`) is applied automatically
