@@ -55,18 +55,30 @@ You didn't mention any of these in your prompt — the instructions applied auto
 
 > Domain-specific knowledge packs that make Copilot an expert in your area.
 
-1. Open [`../../.github/skills/pandas-analysis/SKILL.md`](../../.github/skills/pandas-analysis/SKILL.md)
-2. Read the domain rules: duplicate checks, EUR conversion rates, vectorized operations
-3. Now ask Copilot Chat:
+1. Open [`part-c-skill-demo/skill_context_demo.py`](part-c-skill-demo/skill_context_demo.py) and run it once.
+2. Open [`part-c-skill-demo/financial_transactions_sample.csv`](part-c-skill-demo/financial_transactions_sample.csv) to inspect the data anomalies (duplicates, future timestamp, mixed currencies).
+3. In Chat, ask a baseline request first:
    ```
-   Analyze the financial transactions in df and create a customer summary
+   Using df, create a customer summary with transaction count and total amount.
    ```
-4. Check whether the output follows the skill's rules
+4. Open [`../../.github/skills/pandas-analysis/SKILL.md`](../../.github/skills/pandas-analysis/SKILL.md) and read the domain rules.
+5. Ask a second, skill-aligned request:
+   ```
+   Refactor the summary to follow the pandas-analysis skill exactly:
+   - check duplicates first
+   - convert USD/GBP to EUR (USD 0.92, GBP 1.17)
+   - flag transactions > EUR 50,000
+   - avoid iterrows and use vectorized operations
+   - aggregate by customer, month, merchant category
+   ```
+6. Compare the baseline and skill-aligned outputs.
 
 **What to notice:**
 - Does it check for duplicate transaction IDs first?
 - Does it convert to EUR using the specified rates (USD: 0.92, GBP: 1.17)?
 - Does it use vectorized operations (not `iterrows()`)?
+- Does it flag high-value transactions (> EUR 50,000)?
+- Does it include customer-month-category aggregation?
 
 This is your team's institutional knowledge — encoded, versioned, and shareable.
 

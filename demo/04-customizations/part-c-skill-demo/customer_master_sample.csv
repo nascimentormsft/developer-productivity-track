@@ -1,0 +1,6 @@
+customer_id,customer_name,segment
+CUST-001,Northwind GmbH,Enterprise
+CUST-002,Blue Harbor LLC,SMB
+CUST-003,Contoso BV,SMB
+CUST-004,Fabrikam AG,Enterprise
+CUST-005,Wide World Imports,Mid-Market
