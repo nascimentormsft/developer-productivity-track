@@ -31,7 +31,7 @@
 
 1. Open [`legacy_risk_calculator.py`](legacy_risk_calculator.py)
 2. Select the **entire** `calculate_portfolio_var` function (lines 13–80)
-3. Open Copilot Chat (`Ctrl+Alt+I`) and type:
+3. Open Copilot Chat (`Ctrl+Alt+B`) and type:
    ```
    /explain
    ```
