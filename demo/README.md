@@ -21,14 +21,12 @@ demo/
 │
 ├── ../.github/
 │   ├── copilot-instructions.md         # Part B: Team coding standards
-│   └── prompts/
+│   ├── agents/
+│   │   └── pipeline-scaffolder.agent.md # Part D: CI/CD pipeline agent
+│   ├── prompts/
 │       └── terraform-module.prompt.md  # Part A: Reusable prompt template
-│
-└── ../.vscode/
-    ├── skills/
-    │   └── pandas-analysis/SKILL.md    # Part C: Domain knowledge skill
-    └── agents/
-        └── pipeline-scaffolder.agent.md # Part D: CI/CD pipeline agent
+│   └── skills/
+│       └── pandas-analysis/SKILL.md    # Part C: Domain knowledge skill
 │
 └── 05-labs/                             # Section 5: Choose Your Adventure (25 min)
     ├── track-a-pandas/                  # Track A: Data engineering

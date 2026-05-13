@@ -165,7 +165,7 @@ Rapid-fire demos showing six patterns in real code scenarios.
 Show how customizations replace repetitive tasks with reusable team assets, using real workflow scenarios (Terraform, CI/CD, Azure DevOps).
 
 ### Setup
-- Pre-prepared customization files in a `.github/` and `.vscode/` folder structure
+- Pre-prepared customization files in a `.github/` folder structure
 - Example Terraform module template
 - Example Azure DevOps pipeline YAML
 
@@ -206,7 +206,7 @@ Show how customizations replace repetitive tasks with reusable team assets, usin
 4. Say: "Instructions are invisible guardrails. Set them once, forget about them."
 
 **Part C: Skills (3 min)**
-1. Open `.vscode/skills/pandas-analysis/SKILL.md` (pre-prepared):
+1. Open `.github/skills/pandas-analysis/SKILL.md` (pre-prepared):
    ```markdown
    # Pandas Financial Data Analysis Skill
    When analyzing financial transaction data:
@@ -220,7 +220,7 @@ Show how customizations replace repetitive tasks with reusable team assets, usin
 3. Say: "This is your team's institutional knowledge, encoded and shareable."
 
 **Part D: Agents (4 min)**
-1. Open `.vscode/agents/pipeline-scaffolder.agent.md` (pre-prepared):
+1. Open `.github/agents/pipeline-scaffolder.agent.md` (pre-prepared):
    ```markdown
    ---
    description: "Scaffolds an Azure DevOps CI/CD pipeline with security scanning"

@@ -19,15 +19,6 @@ copilot-workshop/
 
 # IDE
 .vscode/
-!.vscode/
-.vscode/*
-!.vscode/agents/
-!.vscode/agents/*.agent.md
-!.vscode/skills/
-.vscode/skills/*
-!.vscode/skills/*/
-.vscode/skills/*/*
-!.vscode/skills/*/SKILL.md
 .idea/
 *.swp
 *.swo

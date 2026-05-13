@@ -9,7 +9,7 @@
 When analyzing financial transaction data:
 - Always check for duplicate transaction IDs first
 - Convert amounts to EUR using standard rates (USD: 0.92, GBP: 1.17)
-- Flag transactions > €50,000 for regulatory review
+- Flag transactions > EUR50,000 for regulatory review
 - Use vectorized operations, never `iterrows()`
 - Standard aggregation dimensions: customer, month, merchant category
 

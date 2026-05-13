@@ -3,7 +3,7 @@
 **Time:** ~13 min  
 **Goal:** Explore four types of Copilot customizations that replace repetitive tasks with reusable, shareable configuration.
 
-**Setup:** Open the repository root as your workspace so Copilot can see the root `.github/` and `.vscode/` folders.
+**Setup:** Open the repository root as your workspace so Copilot can see the root `.github/` folder.
 
 ---
 
@@ -55,7 +55,7 @@ You didn't mention any of these in your prompt — the instructions applied auto
 
 > Domain-specific knowledge packs that make Copilot an expert in your area.
 
-1. Open [`../../.vscode/skills/pandas-analysis/SKILL.md`](../../.vscode/skills/pandas-analysis/SKILL.md)
+1. Open [`../../.github/skills/pandas-analysis/SKILL.md`](../../.github/skills/pandas-analysis/SKILL.md)
 2. Read the domain rules: duplicate checks, EUR conversion rates, vectorized operations
 3. Now ask Copilot Chat:
    ```
@@ -78,7 +78,7 @@ This is your team's institutional knowledge — encoded, versioned, and shareabl
 
 > Autonomous multi-step workflows that follow your standards.
 
-1. Open [`../../.vscode/agents/pipeline-scaffolder.agent.md`](../../.vscode/agents/pipeline-scaffolder.agent.md)
+1. Open [`../../.github/agents/pipeline-scaffolder.agent.md`](../../.github/agents/pipeline-scaffolder.agent.md)
 2. Read the structure: description, tools, step-by-step instructions
 3. Switch to **Agent mode** in Copilot Chat (click the mode selector)
 4. Type:
