@@ -2,7 +2,7 @@
 Legacy Risk Calculator Module.
 
 Exercise B: Select the entire `calculate_portfolio_var` function below,
-open Copilot Chat (Ctrl+Alt+I), and type: /explain
+open Copilot Chat (Ctrl+Alt+B), and type: /explain
 See GUIDE.md for full instructions.
 """
 

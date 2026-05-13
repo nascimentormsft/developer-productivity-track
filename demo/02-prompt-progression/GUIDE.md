@@ -15,7 +15,7 @@ You'll ask Copilot the same thing three times, improving your prompt each time.
 
 ## Iteration 1 — Vague Prompt
 
-Open Copilot Chat (`Ctrl+Alt+I`) and type:
+Open Copilot Chat (`Ctrl+Alt+B`) and type:
 
 ```
 write a validation function

@@ -16,7 +16,7 @@ WHAT YOU'LL DO:
   Stretch goals available if you finish early!
 
 HOW TO USE COPILOT:
-  - Open Copilot Chat: Ctrl+Alt+I (or click the chat icon)
+  - Open Copilot Chat: Ctrl+Alt+B (or click the chat icon)
   - Remember: Intent + Context + Constraints = Better Results
   - If the output isn't right, ITERATE on your prompt (don't fix manually!)
 
