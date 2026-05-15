@@ -187,63 +187,70 @@ Before writing the prompt, identify:
 
 This is the key habit: when a pattern repeats, build a reusable prompt template instead of rewriting instructions.
 
-2. **Create a parameterized prompt template in [prompts/category-aggregations.md](prompts/category-aggregations.md):**
+2. **Create a parameterized prompt called category-aggregations.prompt within ./github/prompts.
 
-Expand the existing template so it uses placeholders that can be swapped quickly. Include placeholders such as:
-- `{function_name}`
-- `{time_scope}`
-- `{group_by_column}`
-- `{return_type}`
-- `{output_schema}`
+Use the existing template so it uses placeholders that can be swapped quickly. 
+```text
+   Implement a Python function in lab_exercise.py using this configuration:
+
+   - Function name: {function_name}
+   - Input parameters: {input_parameters}
+   - Time scope: {time_scope}
+   - Group-by column: {group_by_column}
+   - Aggregate column: amount
+   - Return type: {return_type}
+   - Output schema: {output_schema}
+   - Filter logic: {filter_logic}
+
+   Requirements:
+   - Use pandas idioms and readable transformations
+   - Add complete type hints for parameters and return value
+   - Add a Google-style docstring
+   - Avoid magic numbers (promote constants when needed)
+   - Keep output deterministic and testable
+   - Follow team standards in track-a-instructions.md
+```
 
 Make sure the template also enforces team standards from [track-a-instructions.md](track-a-instructions.md): type hints, clear names, constants, and Google-style docstrings.
 
-Use this structure in your prompt template:
-
-```text
-Implement a Python function in lab_exercise.py using this configuration:
-
-- Function name: {function_name}
-- Time scope: {time_scope}
-- Group by: {group_by_column}
-- Aggregate column: amount
-- Return type: {return_type}
-- Output schema: {output_schema}
-
-Requirements:
-- Use pandas idioms
-- Add full type hints
-- Add Google-style docstring
-- Keep behavior deterministic and testable
-- Follow track-a-instructions.md
-
-Return only the final function code.
-```
-
-3. **Reuse the template with different configurations:**
+3. **Call the prompt with different configurations:**
 
 Run the same template three times by changing only placeholder values:
 - Config A: `calculate_monthly_savings_by_category`
+   ```text
+      ### Configuration A
+      - `{function_name}`: `calculate_monthly_savings_by_category`
+      - `{input_parameters}`: `df: pd.DataFrame, year: int, month: int`
+      - `{time_scope}`: `specific year and month`
+      - `{group_by_column}`: `merchant_category`
+      - `{return_type}`: `dict[str, float]`
+      - `{output_schema}`: `{category: total_amount}`
+      - `{filter_logic}`: `timestamp year == year and timestamp month == month`
+   ```
 - Config B: `calculate_yearly_category_trend`
+   ```text
+      ### Configuration B
+      - `{function_name}`: `calculate_yearly_category_trend`
+      - `{input_parameters}`: `df: pd.DataFrame, year: int`
+      - `{time_scope}`: `all months in a year`
+      - `{group_by_column}`: `merchant_category`
+      - `{return_type}`: `dict[str, float]`
+      - `{output_schema}`: `{category: total_amount}`
+      - `{filter_logic}`: `timestamp year == year`
+   ```
 - Config C: `generate_category_report`
+   ```text
+      ### Configuration C
+      - `{function_name}`: `generate_category_report`
+      - `{input_parameters}`: `df: pd.DataFrame`
+      - `{time_scope}`: `all available years and months`
+      - `{group_by_column}`: `merchant_category`
+      - `{return_type}`: `pd.DataFrame`
+      - `{output_schema}`: `rows by year/month/category with aggregated total`
+      - `{filter_logic}`: `none`
+   ```
 
 This simulates real-world reuse: save one prompt, adjust config, generate faster.
-
-4. **Save and document reuse:**
-
-In [prompts/category-aggregations.md](prompts/category-aggregations.md), keep a short usage log:
-- Which configurations were used
-- What worked well
-- When to reuse this template again
-
-5. **Test the implementation:**
-
-```bash
-pytest tests/test_customer_summary.py -v
-```
-
-### Expected Outcome
-Three new functions are implemented using one reusable prompt template. Tests pass. You can now invoke the prompt by name and swap only configuration values.
 
 ---
 
