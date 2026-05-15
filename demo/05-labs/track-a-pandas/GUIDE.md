@@ -173,50 +173,77 @@ Code follows team standards. Type hints are present. Magic numbers are constants
 ## Phase 4: Implement Repetitive Feature Using Custom Prompt (12-18 min)
 
 ### Goal
-Use prompt engineering to automate a repetitive task: adding category-based aggregations.
+Use prompt engineering to turn repetitive coding into a reusable prompt template you can invoke with small configuration changes.
 
 ### Your Tasks
 
-1. **Understand the repetitive pattern:**
+1. **Spot the repetitive pattern (same vs. variable):**
 
-You need to implement three functions that all follow the same aggregation pattern. This is repetitive work that can be automated with a good prompt.
+You need to implement three functions that all follow the same aggregation structure.
 
-2. **Create your custom prompt in [prompts/category-aggregations.md](prompts/category-aggregations.md):**
+Before writing the prompt, identify:
+- What stays the same: filtering by time, grouping by `merchant_category`, aggregating `amount`, and returning structured output
+- What changes: function name, time scope (month/year/all), and return type (`dict` or `DataFrame`)
 
-Expand the existing prompt template with specific, detailed requirements:
+This is the key habit: when a pattern repeats, build a reusable prompt template instead of rewriting instructions.
+
+2. **Create a parameterized prompt template in [prompts/category-aggregations.md](prompts/category-aggregations.md):**
+
+Expand the existing template so it uses placeholders that can be swapped quickly. Include placeholders such as:
+- `{function_name}`
+- `{time_scope}`
+- `{group_by_column}`
+- `{return_type}`
+- `{output_schema}`
+
+Make sure the template also enforces team standards from [track-a-instructions.md](track-a-instructions.md): type hints, clear names, constants, and Google-style docstrings.
+
+Use this structure in your prompt template:
 
 ```text
-I need to implement three functions that all follow the same aggregation pattern:
+Implement a Python function in lab_exercise.py using this configuration:
 
-1. calculate_monthly_savings_by_category(df, year, month) -> dict
-   - Group by merchant_category for the specified year/month
-   - Sum amounts for each category
-   - Return {category: total_amount, ...}
+- Function name: {function_name}
+- Time scope: {time_scope}
+- Group by: {group_by_column}
+- Aggregate column: amount
+- Return type: {return_type}
+- Output schema: {output_schema}
 
-2. calculate_yearly_category_trend(df, year) -> dict
-   - Same pattern but across all months in the year
-   - Return {category: total_amount, ...}
+Requirements:
+- Use pandas idioms
+- Add full type hints
+- Add Google-style docstring
+- Keep behavior deterministic and testable
+- Follow track-a-instructions.md
 
-3. generate_category_report(df) -> DataFrame
-   - Apply both above functions across all years/months
-   - Return a report showing trend over time
-
-Implement these three functions in lab_exercise.py.
-Follow team coding standards: type hints, constants for magic numbers, docstrings.
+Return only the final function code.
 ```
 
-3. **Use your custom prompt in Copilot:**
+3. **Reuse the template with different configurations:**
 
-Copy your custom prompt from [prompts/category-aggregations.md](prompts/category-aggregations.md) and paste it into Copilot Chat. Copilot will generate all three functions following the pattern.
+Run the same template three times by changing only placeholder values:
+- Config A: `calculate_monthly_savings_by_category`
+- Config B: `calculate_yearly_category_trend`
+- Config C: `generate_category_report`
 
-4. **Test the implementation:**
+This simulates real-world reuse: save one prompt, adjust config, generate faster.
+
+4. **Save and document reuse:**
+
+In [prompts/category-aggregations.md](prompts/category-aggregations.md), keep a short usage log:
+- Which configurations were used
+- What worked well
+- When to reuse this template again
+
+5. **Test the implementation:**
 
 ```bash
 pytest tests/test_customer_summary.py -v
 ```
 
 ### Expected Outcome
-Three new functions implemented following the same pattern. Tests pass. Code is DRY (Don't Repeat Yourself).
+Three new functions are implemented using one reusable prompt template. Tests pass. You can now invoke the prompt by name and swap only configuration values.
 
 ---
 
