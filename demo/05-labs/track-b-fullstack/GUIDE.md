@@ -6,7 +6,7 @@ Welcome to the Full-Stack API Lab! This lab is designed to help you practice cod
 ## Quick Reference: The 6 Phases
 
 | Phase | Goal | Time | Key Activity |
-|-------|------|------|______________|
+|-------|------|------|--------------|
 | 1 | Explore backend & frontend | 5 min | Use Copilot to understand API and UI code |
 | 2 | Find & fix the bug | 8-12 min | Debug and fix subtle logic error |
 | 3 | Refactor code smells | 10-15 min | Apply team instructions to improve code quality |

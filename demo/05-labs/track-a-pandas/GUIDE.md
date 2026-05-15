@@ -6,7 +6,7 @@ Welcome to the Pandas Data Pipeline Lab! This lab is designed to help you practi
 ## Quick Reference: The 6 Phases
 
 | Phase | Goal | Time | Key Activity |
-|-------|------|------|______________|
+|-------|------|------|--------------|
 | 1 | Explain the codebase | 5 min | Use Copilot to understand the code flow |
 | 2 | Find & fix the bug | 8-12 min | Debug and fix subtle logic error |
 | 3 | Refactor code smells | 10-15 min | Apply team instructions to improve code quality |
