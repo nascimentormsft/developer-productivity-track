@@ -56,7 +56,12 @@ You didn't mention any of these in your prompt — the instructions applied auto
 > Domain-specific knowledge packs that make Copilot an expert in your area.
 
 1. Open [part-c-skill-demo/skill_context_demo.py](part-c-skill-demo/skill_context_demo.py) and run it once.
-2. Confirm it generates only the baseline file: [part-c-skill-demo/outputs/without_skill_customer_summary.csv](part-c-skill-demo/outputs/without_skill_customer_summary.csv).
+2. Run the script to generate the baseline file:
+   ```bash
+   pip install pandas
+   python demo/04-customizations/part-c-skill-demo/skill_context_demo.py
+   ```
+   Confirm it generates only the baseline file: [part-c-skill-demo/outputs/without_skill_customer_summary.csv](part-c-skill-demo/outputs/without_skill_customer_summary.csv).
 3. Open [part-c-skill-demo/financial_transactions_sample.csv](part-c-skill-demo/financial_transactions_sample.csv) to inspect the data anomalies (duplicates, future timestamp, mixed currencies).
 4. Open [../../.github/skills/pandas-analysis/SKILL.md](../../.github/skills/pandas-analysis/SKILL.md) and read the domain rules.
 5. In Chat, ask Copilot to update the function implementation:
