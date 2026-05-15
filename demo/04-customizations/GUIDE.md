@@ -55,23 +55,35 @@ You didn't mention any of these in your prompt — the instructions applied auto
 
 > Domain-specific knowledge packs that make Copilot an expert in your area.
 
-1. Open [`part-c-skill-demo/skill_context_demo.py`](part-c-skill-demo/skill_context_demo.py) and run it once.
-2. Open [`part-c-skill-demo/financial_transactions_sample.csv`](part-c-skill-demo/financial_transactions_sample.csv) to inspect the data anomalies (duplicates, future timestamp, mixed currencies).
-3. In Chat, ask a baseline request first:
+1. Open [part-c-skill-demo/skill_context_demo.py](part-c-skill-demo/skill_context_demo.py) and run it once.
+2. Confirm it generates only the baseline file: [part-c-skill-demo/outputs/without_skill_customer_summary.csv](part-c-skill-demo/outputs/without_skill_customer_summary.csv).
+3. Open [part-c-skill-demo/financial_transactions_sample.csv](part-c-skill-demo/financial_transactions_sample.csv) to inspect the data anomalies (duplicates, future timestamp, mixed currencies).
+4. Open [../../.github/skills/pandas-analysis/SKILL.md](../../.github/skills/pandas-analysis/SKILL.md) and read the domain rules.
+5. In Chat, ask Copilot to update the function implementation:
    ```
-   Using df, create a customer summary with transaction count and total amount.
+   Update part-c-skill-demo/skill_context_demo.py to add skill-aware output generation.
+
+   Requirements:
+   - Keep the existing baseline output file `without_skill_customer_summary.csv`.
+   - Update `write_demo_artifacts` and `main` so the script also generates `with_skill_customer_month_merchant_summary.csv`.
+   - Follow pandas-analysis skill exactly:
+     - check duplicates first
+     - convert USD/GBP to EUR (USD 0.92, GBP 1.17)
+     - flag transactions > EUR 50,000
+     - avoid iterrows and use vectorized operations
+     - aggregate by customer, month, merchant category
+   - Reset index on groupby results, round monetary values to 2 decimals, and sort by customer_id then descending amount metric.
    ```
-4. Open [`../../.github/skills/pandas-analysis/SKILL.md`](../../.github/skills/pandas-analysis/SKILL.md) and read the domain rules.
-5. Ask a second, skill-aligned request:
+6. Re-run [part-c-skill-demo/skill_context_demo.py](part-c-skill-demo/skill_context_demo.py) and confirm the new file exists: [part-c-skill-demo/outputs/with_skill_customer_month_merchant_summary.csv](part-c-skill-demo/outputs/with_skill_customer_month_merchant_summary.csv).
+7. Compare baseline vs skill-aware output side-by-side:
+   ```powershell
+   code --diff part-c-skill-demo/outputs/without_skill_customer_summary.csv part-c-skill-demo/outputs/with_skill_customer_month_merchant_summary.csv
    ```
-   Refactor the summary to follow the pandas-analysis skill exactly:
-   - check duplicates first
-   - convert USD/GBP to EUR (USD 0.92, GBP 1.17)
-   - flag transactions > EUR 50,000
-   - avoid iterrows and use vectorized operations
-   - aggregate by customer, month, merchant category
-   ```
-6. Compare the baseline and skill-aligned outputs.
+
+8. Discuss as a group:
+   - What changed in the output schema?
+   - Which data quality/risk indicators appeared only after the skill-aware update?
+   - How did the skill reduce prompt ambiguity?
 
 **What to notice:**
 - Does it check for duplicate transaction IDs first?
@@ -80,7 +92,7 @@ You didn't mention any of these in your prompt — the instructions applied auto
 - Does it flag high-value transactions (> EUR 50,000)?
 - Does it include customer-month-category aggregation?
 
-This is your team's institutional knowledge — encoded, versioned, and shareable.
+This is your team's institutional knowledge, encoded, versioned, and shareable.
 
 📖 **Learn more:** [Adding agent skills for GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-skills)
 

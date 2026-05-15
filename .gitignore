@@ -30,3 +30,6 @@ desktop.ini
 
 # Jupyter
 .ipynb_checkpoints/
+
+# Demo-generated artifacts
+demo/04-customizations/part-c-skill-demo/outputs/
