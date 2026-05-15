@@ -16,7 +16,7 @@
 python lab_exercise.py
 ```
 
-5. Use Copilot Chat (`Ctrl+Alt+B`) in Planner mode while working through each part.
+5. Use Copilot Chat (`Ctrl+Alt+B`), make sure it is in agent mode.
 
 ---
 
