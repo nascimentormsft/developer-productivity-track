@@ -1,6 +1,0 @@
-PART_1_PLACEHOLDER = "Participant solution placeholder for Part 1"
-PART_2_PLACEHOLDER = "Participant solution placeholder for Part 2"
-PART_3_PLACEHOLDER = "Participant solution placeholder for Part 3"
-PART_4_PLACEHOLDER = "Participant solution placeholder for Part 4"
-STRETCH_GOAL_1_PLACEHOLDER = "Participant solution placeholder for Stretch Goal 1"
-STRETCH_GOAL_2_PLACEHOLDER = "Participant solution placeholder for Stretch Goal 2"

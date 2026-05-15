@@ -56,6 +56,7 @@ def get_transaction(transaction_id: str):
     raise HTTPException(status_code=404, detail="Transaction not found")
 
 
+
 @router.post("/", response_model=TransactionResponse, status_code=201)
 def create_transaction(payload: TransactionCreate):
     """Create a new transaction."""
@@ -71,3 +72,25 @@ def create_transaction(payload: TransactionCreate):
     )
     _transactions.append(txn)
     return txn
+
+
+# Subtle logic bug: summary endpoint excludes last transaction due to < instead of <= in date filter
+@router.get("/summary/{customer_id}")
+def get_customer_summary(customer_id: str):
+    # No docstring (code smell)
+    customer_txns = [t for t in _transactions if t.customer_id == customer_id]
+    if not customer_txns:
+        raise HTTPException(status_code=404, detail="Customer not found")
+    # Bug: Exclude last transaction if using < max date
+    last_date = max(t.timestamp for t in customer_txns)
+    filtered = [t for t in customer_txns if t.timestamp < last_date]  # Bug: should be <=
+    if not filtered:
+        filtered = customer_txns
+    top_category = max(set(t.merchant_category for t in filtered), key=lambda c: [t.merchant_category for t in filtered].count(c))
+    return {
+        "total_transactions": len(filtered),
+        "total_amount": sum(t.amount for t in filtered),
+        "average_amount": sum(t.amount for t in filtered) / len(filtered),
+        "top_category": top_category,
+        "last_transaction_date": last_date,
+    }

@@ -26,8 +26,26 @@ def part_1_dataset_exploration(df: pd.DataFrame) -> None:
 #       deduplicated rows, and clipped amounts.
 # =============================================================================
 def part_2_data_transformation(df: pd.DataFrame) -> pd.DataFrame:
-    # TODO: implement transformation pipeline here
-    pass
+    # Hardcoded currency rates (code smell)
+    USD_TO_EUR = 0.92
+    GBP_TO_EUR = 1.17
+    # Subtle logic bug: applies conversion to all EUR rows, but should only apply to PURCHASE transactions
+    df2 = (
+        df.copy()
+        .assign(
+            timestamp=lambda d: pd.to_datetime(d["timestamp"]).dt.tz_localize("UTC", nonexistent="shift_forward"),
+            amount_eur=lambda d: d.apply(
+                lambda row: row["amount"] * USD_TO_EUR if row["currency"] == "USD" else (
+                    row["amount"] * GBP_TO_EUR if row["currency"] == "GBP" else row["amount"]
+                ),
+                axis=1,
+            ),
+            merchant_category=lambda d: d["merchant_category"].fillna("UNKNOWN"),
+        )
+        .drop_duplicates(subset=["transaction_id"], keep="first")
+        .assign(amount=lambda d: d["amount"].clip(0, 500000))
+    )
+    return df2
 
 
 # =============================================================================
@@ -48,28 +66,28 @@ def part_3_aggregation_and_analysis(df: pd.DataFrame) -> pd.DataFrame:
 #       docstring, and input validation. See tests/test_transform.py.
 # =============================================================================
 def transform_transactions(df: pd.DataFrame) -> pd.DataFrame:
-    # TODO: implement reusable transform_transactions function here
-    pass
-
-
-# =============================================================================
-# Stretch Goal 1: Fraud Feature Engineering  (optional)
-# Goal: Engineer transaction_hour, amount_zscore per customer,
-#       days_since_last_txn, and rolling_7d_avg. Return enriched DataFrame.
-# =============================================================================
-def stretch_goal_1_fraud_features(df: pd.DataFrame) -> pd.DataFrame:
-    # TODO: implement fraud feature engineering here
-    pass
-
-
-# =============================================================================
-# Stretch Goal 2: Category Anomaly Detection  (optional)
-# Goal: Flag customers whose average transaction in any merchant_category
-#       is more than 3 standard deviations above that category mean.
-# =============================================================================
-def stretch_goal_2_category_anomaly(df: pd.DataFrame) -> pd.DataFrame:
-    # TODO: implement category anomaly detection here
-    pass
+    # No type hints (code smell), unclear function name (code smell)
+    # Hardcoded currency rates (code smell)
+    USD_TO_EUR = 0.92
+    GBP_TO_EUR = 1.17
+    if not all(col in df.columns for col in ["timestamp", "amount", "currency", "merchant_category", "transaction_id"]):
+        raise ValueError("Missing required columns")
+    df2 = (
+        df.copy()
+        .assign(
+            timestamp=lambda d: pd.to_datetime(d["timestamp"]).dt.tz_localize("UTC", nonexistent="shift_forward"),
+            amount_eur=lambda d: d.apply(
+                lambda row: row["amount"] * USD_TO_EUR if row["currency"] == "USD" else (
+                    row["amount"] * GBP_TO_EUR if row["currency"] == "GBP" else row["amount"]
+                ),
+                axis=1,
+            ),
+            merchant_category=lambda d: d["merchant_category"].fillna("UNKNOWN"),
+        )
+        .drop_duplicates(subset=["transaction_id"], keep="first")
+        .assign(amount=lambda d: d["amount"].clip(0, 500000))
+    )
+    return df2
 
 
 # =============================================================================
@@ -84,8 +102,5 @@ if __name__ == "__main__":
     # summary = part_3_aggregation_and_analysis(df_clean)
     # print(summary.head())
 
-    # df_features = stretch_goal_1_fraud_features(df_clean)
+    # df_features = transform_transactions(df_clean)
     # print(df_features.head())
-
-    # flagged = stretch_goal_2_category_anomaly(df_clean)
-    # print(flagged)

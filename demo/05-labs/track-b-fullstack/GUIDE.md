@@ -1,7 +1,16 @@
-# Hands-on Lab Track B: Full-Stack Feature Delivery
 
-**Time:** ~25 min  
-**Goal:** Use Copilot Agent mode to deliver a feature across backend, frontend, and tests.
+# Track B: Full-Stack API Lab
+
+Welcome to the Full-Stack API Lab! This lab will help you practice code exploration, debugging, refactoring, prompt engineering, and documentation automation using Copilot.
+
+## Lab Phases
+
+1. **Explore the codebase**: Use Copilot to explain the backend and frontend code, and identify what is missing.
+2. **Find and fix the bug**: There is a subtle logic bug in the code that affects the results. Use Copilot to help you debug and fix it.
+3. **Refactor code smells**: Use the provided team instructions to refactor the code for clarity and maintainability.
+4. **Implement a repetitive feature**: Use prompt engineering to automate repetitive endpoint creation.
+5. **Create a documentation agent**: Build your own Copilot agent to generate a Mermaid diagram of the API architecture.
+6. **Embed your diagram in the README**: Use the VS Code Mermaid extension to preview your diagram, then paste the Mermaid code in the README under the Project Diagrams section.
 
 ---
 
@@ -31,32 +40,43 @@ pytest -q
 
 ---
 
-## Part 1: Understand Existing Code (5 min)
+## Part 1: Explore the Codebase (5 min)
 
-Review current behavior before changing code:
-
-1. Inspect [backend/routes/transactions.py](backend/routes/transactions.py) and [backend/models.py](backend/models.py).
-2. Ask Copilot to explain exposed endpoints and request/response shapes.
-3. Verify baseline behavior in [backend/tests/test_transactions.py](backend/tests/test_transactions.py).
-
-Copy/paste prompt:
-
-```text
-What endpoints does this API expose? Return a table with:
-- method
-- path
-- description
-- request body
-- response format
-```
-
-Expected outcome:
-
-1. Clear map of current API and data models.
+Use Copilot to explain the backend and frontend code, and identify what is missing.
 
 ---
 
-## Part 2: Add Backend Summary Endpoint (8 min)
+## Part 2: Find and Fix the Bug (8 min)
+
+There is a subtle logic bug in the code that affects the results. Use Copilot to help you debug and fix it.
+
+---
+
+## Part 3: Refactor Code Smells (7 min)
+
+Use the provided team instructions to refactor the code for clarity and maintainability.
+
+---
+
+## Part 4: Implement a Repetitive Feature (10 min)
+
+Use prompt engineering to automate repetitive endpoint creation. See the provided prompt template in the prompts directory.
+
+---
+
+## Part 5: Create a Documentation Agent (10 min)
+
+Build your own Copilot agent to generate a Mermaid diagram of the API architecture. No starter agent is provided. Use Copilot and the README instructions to guide your implementation.
+
+---
+
+## Part 6: Embed Your Diagram in the README
+
+Use the VS Code Mermaid extension to preview your diagram, then paste the Mermaid code in the README under the Project Diagrams section.
+
+---
+
+Happy learning!
 
 Use Agent mode to implement `GET /transactions/summary/{customer_id}` with:
 
