@@ -187,7 +187,7 @@ Before writing the prompt, identify:
 
 This is the key habit: when a pattern repeats, build a reusable prompt template instead of rewriting instructions.
 
-2. **Create a parameterized prompt called category-aggregations.prompt.md within ./github/prompts.
+2. **Create a parameterized prompt** called category-aggregations.prompt.md within ./github/prompts.
 
 Use the existing template so it uses placeholders that can be swapped quickly. 
 ```text
