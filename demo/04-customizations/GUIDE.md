@@ -66,18 +66,11 @@ You didn't mention any of these in your prompt — the instructions applied auto
 4. Open [../../.github/skills/pandas-analysis/SKILL.md](../../.github/skills/pandas-analysis/SKILL.md) and read the domain rules.
 5. In Chat, ask Copilot to update the function implementation:
    ```
-   Update part-c-skill-demo/skill_context_demo.py to add skill-aware output generation.
+   /pandas-analysis Update part-c-skill-demo/skill_context_demo.py to add skill-aware output generation.
 
    Requirements:
    - Keep the existing baseline output file `without_skill_customer_summary.csv`.
    - Update `write_demo_artifacts` and `main` so the script also generates `with_skill_customer_month_merchant_summary.csv`.
-   - Follow pandas-analysis skill exactly:
-     - check duplicates first
-     - convert USD/GBP to EUR (USD 0.92, GBP 1.17)
-     - flag transactions > EUR 50,000
-     - avoid iterrows and use vectorized operations
-     - aggregate by customer, month, merchant category
-   - Reset index on groupby results, round monetary values to 2 decimals, and sort by customer_id then descending amount metric.
    ```
 6. Re-run [part-c-skill-demo/skill_context_demo.py](part-c-skill-demo/skill_context_demo.py) and confirm the new file exists: [part-c-skill-demo/outputs/with_skill_customer_month_merchant_summary.csv](part-c-skill-demo/outputs/with_skill_customer_month_merchant_summary.csv).
 7. Compare baseline vs skill-aware output side-by-side:
