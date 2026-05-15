@@ -53,13 +53,15 @@ Provide a data quality report:
 - Date range coverage
 - Distribution of categorical fields (value counts)
 Format as printed output with clear section headers.
+
+Implement this inside the `part_1_dataset_exploration` function in lab_exercise.py,
+replacing the `pass` statement.
 ```
 
 What to compare:
 
 1. How specific and actionable each response is.
 2. Whether the final output can be used as a real quality report.
-3. Paste your final code in `part_1_dataset_exploration` inside [lab_exercise.py](lab_exercise.py).
 
 ---
 
@@ -89,9 +91,10 @@ Transform the transactions DataFrame `df` with these requirements:
 4. Remove exact duplicate transaction_ids (keep first)
 5. Clip amount to [0, 500000] range (regulatory cap)
 Use method chaining. Return a new DataFrame.
-```
 
-Paste your result in `part_2_data_transformation` inside [lab_exercise.py](lab_exercise.py).
+Implement this inside the `part_2_data_transformation` function in lab_exercise.py,
+replacing the `pass` statement.
+```
 
 ---
 
@@ -115,12 +118,14 @@ Requirements:
 - Add month-over-month growth rate for total_amount per customer
 - Sort by customer_id and month
 Return a DataFrame.
+
+Implement this inside the `part_3_aggregation_and_analysis` function in lab_exercise.py,
+replacing the `pass` statement.
 ```
 
 Expected outcome:
 
 1. A clean analytic output you could pass to BI/reporting.
-2. Paste your code in `part_3_aggregation_and_analysis` inside [lab_exercise.py](lab_exercise.py).
 
 ---
 
@@ -143,6 +148,9 @@ Refactor the data transformation into a function:
 - Add type hints and Google-style docstring
 - Add input validation
 - Raise ValueError if required columns are missing
+
+Implement this inside the `transform_transactions` function in lab_exercise.py,
+replacing the `pass` statement.
 ```
 
 Test generation prompt:
