@@ -3,214 +3,315 @@
 
 Welcome to the Pandas Data Pipeline Lab! This lab is designed to help you practice code exploration, debugging, refactoring, prompt engineering, and documentation automation using Copilot.
 
-## Lab Phases
+## Quick Reference: The 6 Phases
 
-1. **Explore the codebase**: Use Copilot to explain the code and identify what is missing.
-2. **Find and fix the bug**: There is a subtle logic bug in the code that affects the results. Use Copilot to help you debug and fix it.
-3. **Refactor code smells**: Use the provided team instructions to refactor the code for clarity and maintainability.
-4. **Implement a repetitive feature**: Use prompt engineering to automate repetitive aggregation tasks.
-5. **Create a documentation agent**: Build your own Copilot agent to generate a Mermaid diagram of the data pipeline.
-6. **Embed your diagram in the README**: Use the VS Code Mermaid extension to preview your diagram, then paste the Mermaid code in the README under the Project Diagrams section.
+| Phase | Goal | Time | Key Activity |
+|-------|------|------|______________|
+| 1 | Explain the codebase | 5 min | Use Copilot to understand the code flow |
+| 2 | Find & fix the bug | 8-12 min | Debug and fix subtle logic error |
+| 3 | Refactor code smells | 10-15 min | Apply team instructions to improve code quality |
+| 4 | Implement repetitive feature | 12-18 min | Create custom prompt to automate aggregation |
+| 5 | Create documentation agent | 10-15 min | Build your own Mermaid diagram agent |
+| 6 | Embed diagram in README | 5 min | Paste diagram and verify |
 
 ---
 
 ## Setup
 
-1. Open [lab_exercise.py](lab_exercise.py).
+1. Open [lab_exercise.py](lab_exercise.py) in VS Code.
 2. Confirm [financial_transactions.csv](financial_transactions.csv) exists in the same folder.
-3. If you need to regenerate the dataset, run [generate_dataset.py](generate_dataset.py).
-4. Run the exercise file:
+3. Install dependencies:
+
+```bash
+pip install pandas
+```
+
+4. Run the exercise file to confirm it loads:
 
 ```bash
 python lab_exercise.py
 ```
 
-5. Use Copilot Chat (`Ctrl+Alt+B`), make sure it is in agent mode.
+5. Open Copilot Chat (`Ctrl+Shift+I` or `Ctrl+Alt+B`) and ensure you're in **agent mode**.
 
 ---
 
-## Part 1: Dataset Exploration (5 min)
+## Phase 1: Explore the Codebase (5 min)
 
-Use prompt progression with the loaded `df` DataFrame in [lab_exercise.py](lab_exercise.py):
+### Goal
+Understand what the code does and identify what's missing or unclear.
 
-1. Start with this vague prompt:
+### Your Tasks
+
+1. **Explain the current code structure:**
+
+In Copilot Chat, copy/paste this prompt:
 
 ```text
-explore this dataset
+Explain the code structure in lab_exercise.py. Walk me through:
+- What the main data loading does
+- What each function (part_1, part_2, part_3, transform_transactions) is supposed to do
+- What code is implemented vs. what is still TODO
+
+Be concise.
 ```
 
-2. Then use this contextual prompt:
+2. **Understand the data:**
 
 ```text
-I have a financial transactions DataFrame `df` with columns:
+I have a financial transactions dataset with columns:
 transaction_id, customer_id, amount, currency, transaction_type,
-merchant_category, timestamp, is_flagged, account_balance.
-Summarize this dataset: shape, data types, missing values, distributions.
+merchant_category, timestamp, is_flagged, account_balance
+
+What does each column represent? Which ones are most important for analysis?
 ```
 
-3. Then use this constrained prompt:
-
-```text
-I have a financial transactions DataFrame `df` with columns:
-transaction_id, customer_id, amount, currency, transaction_type,
-merchant_category, timestamp, is_flagged, account_balance.
-
-Provide a data quality report:
-- Missing values per column (count and percentage)
-- Duplicate transaction_id check
-- Statistical outliers in amount (IQR method)
-- Date range coverage
-- Distribution of categorical fields (value counts)
-Format as printed output with clear section headers.
-
-Implement this inside the `part_1_dataset_exploration` function in lab_exercise.py,
-replacing the `pass` statement.
-```
-
-What to compare:
-
-1. How specific and actionable each response is.
-2. Whether the final output can be used as a real quality report.
+### Expected Outcome
+You understand the lab structure and what each function should accomplish.
 
 ---
 
-## Part 2: Data Transformation (7 min)
+## Phase 2: Find & Fix the Bug (8-12 min)
 
-Prompt Copilot to produce a transformation pipeline that:
+### Goal
+There is a **subtle logic bug** in the code that produces incorrect results. Find and fix it using Copilot.
 
-1. Converts `timestamp` to UTC-aware datetime.
-2. Creates `amount_eur` from currency conversion rules.
-3. Fills missing `merchant_category` with `UNKNOWN`.
-4. Deduplicates by `transaction_id` keeping first.
-5. Clips `amount` to `[0, 500000]`.
+### Your Tasks
 
-Constraints to include:
+1. **Run the code and observe the behavior:**
 
-1. Use method chaining.
-2. Return a new DataFrame.
-3. Add brief inline comments.
+```bash
+python lab_exercise.py
+```
 
-Copy/paste prompt:
+Look at the output. The first part runs, but notice the `part_2_data_transformation` function is already implemented. Ask Copilot:
 
 ```text
-Transform the transactions DataFrame `df` with these requirements:
-1. Convert timestamp to datetime, localize to UTC
-2. Create amount_eur column (convert USD at 0.92, GBP at 1.17)
-3. Fill missing merchant_category with 'UNKNOWN' (do not drop rows)
-4. Remove exact duplicate transaction_ids (keep first)
-5. Clip amount to [0, 500000] range (regulatory cap)
-Use method chaining. Return a new DataFrame.
-
-Implement this inside the `part_2_data_transformation` function in lab_exercise.py,
-replacing the `pass` statement.
+In lab_exercise.py, run part_2_data_transformation(df) on the loaded data.
+What does the output show? Are there any issues with the currency conversion or data transformation?
 ```
+
+2. **Identify the bug:**
+
+In Copilot, ask:
+
+```text
+In the part_2_data_transformation function in lab_exercise.py, there's a subtle logic bug.
+The code converts amounts but may be applying conversions incorrectly.
+Run the function mentally and compare input vs. output.
+What rows are being incorrectly processed?
+Debug this issue and tell me what the bug is.
+```
+
+3. **Fix the bug:**
+
+Once you identify the issue, ask Copilot:
+
+```text
+Fix the bug in part_2_data_transformation in lab_exercise.py.
+The issue is: [describe what you found]
+Implement the fix while keeping all other logic the same.
+```
+
+### Expected Outcome
+The `part_2_data_transformation` function runs correctly without the logic error.
 
 ---
 
-## Part 3: Aggregation and Analysis (5 min)
+## Phase 3: Refactor Code Smells (10-15 min)
 
-Generate a monthly customer summary with:
+### Goal
+Improve code quality by applying team standards from [track-a-instructions.md](track-a-instructions.md).
 
-1. Grouping by `customer_id` and month.
-2. Metrics: `total_amount`, `transaction_count`, `unique_merchants`, `avg_transaction`, `max_transaction`.
-3. Month-over-month growth rate.
-4. Sorting by customer and month.
+### Team Standards to Apply
 
-Copy/paste prompt:
+From [track-a-instructions.md](track-a-instructions.md):
+- ✅ All functions must have Python type hints
+- ✅ Use clear, verb-based function names
+- ✅ Extract magic numbers into named constants
+- ✅ Use Google docstring style
+- ✅ Prefer f-strings for formatting
+
+### Your Tasks
+
+1. **Review the code smells:**
 
 ```text
-Create a monthly customer spending summary from DataFrame `df`.
-Requirements:
-- Group by customer_id and month
-- Include metrics: total_amount, transaction_count, unique_merchants,
-  avg_transaction, max_transaction
-- Add month-over-month growth rate for total_amount per customer
-- Sort by customer_id and month
-Return a DataFrame.
+In lab_exercise.py, identify code quality issues:
+- Missing or incomplete type hints
+- Hardcoded values (like currency rates, clipping bounds)
+- Function names that aren't clear
+- Missing or incomplete docstrings
 
-Implement this inside the `part_3_aggregation_and_analysis` function in lab_exercise.py,
-replacing the `pass` statement.
+List the issues you find.
 ```
 
-Expected outcome:
+2. **Apply team instructions to fix code smells:**
 
-1. A clean analytic output you could pass to BI/reporting.
+```text
+Refactor lab_exercise.py to match these team standards from track-a-instructions.md:
+- All functions must have type hints on parameters and return values
+- Extract hardcoded currency rates (0.92, 1.17) into CURRENCY_RATES constant at module level
+- Extract hardcoded clipping bound (500000) into MAX_AMOUNT constant
+- Add Google-style docstrings to part_2_data_transformation and transform_transactions
+- Use clear function names
+
+Apply these changes while preserving the bug fix from Phase 2.
+```
+
+3. **Verify the code still works:**
+
+```bash
+python lab_exercise.py
+```
+
+### Expected Outcome
+Code follows team standards. Type hints are present. Magic numbers are constants. Docstrings are clear and Google-style.
 
 ---
 
-## Part 4: Refactor and Test (5 min)
+## Phase 4: Implement Repetitive Feature Using Custom Prompt (12-18 min)
 
-Refactor the transformation logic into a reusable function and generate tests.
+### Goal
+Use prompt engineering to automate a repetitive task: adding category-based aggregations.
 
-1. Function name: `transform_transactions`.
-2. Include type hints and Google-style docstring.
-3. Validate required columns and raise `ValueError` when missing.
-4. Generate pytest tests for happy path, conversions, missing values, dedupe, clipping, and empty input.
+### Your Tasks
 
-Refactor prompt:
+1. **Understand the repetitive pattern:**
 
-```text
-Refactor the data transformation into a function:
-- Name: transform_transactions
-- Input: pd.DataFrame
-- Output: pd.DataFrame
-- Add type hints and Google-style docstring
-- Add input validation
-- Raise ValueError if required columns are missing
+You need to implement three functions that all follow the same aggregation pattern. This is repetitive work that can be automated with a good prompt.
 
-Implement this inside the `transform_transactions` function in lab_exercise.py,
-replacing the `pass` statement.
-```
+2. **Create your custom prompt in [prompts/category-aggregations.md](prompts/category-aggregations.md):**
 
-Test generation prompt:
+Expand the existing prompt template with specific, detailed requirements:
 
 ```text
-Generate pytest tests for transform_transactions:
-- Happy path with valid data
-- Currency conversion accuracy
-- Missing merchant_category is filled
-- Duplicates removed (keep first)
-- Amount clipping at boundaries
-- Empty DataFrame returns empty (no error)
-Use pytest fixtures for sample data.
+I need to implement three functions that all follow the same aggregation pattern:
+
+1. calculate_monthly_savings_by_category(df, year, month) -> dict
+   - Group by merchant_category for the specified year/month
+   - Sum amounts for each category
+   - Return {category: total_amount, ...}
+
+2. calculate_yearly_category_trend(df, year) -> dict
+   - Same pattern but across all months in the year
+   - Return {category: total_amount, ...}
+
+3. generate_category_report(df) -> DataFrame
+   - Apply both above functions across all years/months
+   - Return a report showing trend over time
+
+Implement these three functions in lab_exercise.py.
+Follow team coding standards: type hints, constants for magic numbers, docstrings.
 ```
 
-Paste your code in `part_4_refactor_and_tests` inside [lab_exercise.py](lab_exercise.py).
+3. **Use your custom prompt in Copilot:**
+
+Copy your custom prompt from [prompts/category-aggregations.md](prompts/category-aggregations.md) and paste it into Copilot Chat. Copilot will generate all three functions following the pattern.
+
+4. **Test the implementation:**
+
+```bash
+pytest tests/test_customer_summary.py -v
+```
+
+### Expected Outcome
+Three new functions implemented following the same pattern. Tests pass. Code is DRY (Don't Repeat Yourself).
 
 ---
 
-## Stretch Goals
+## Phase 5: Create Your Own Documentation Agent (10-15 min)
 
-1. Engineer fraud features (`transaction_hour`, per-customer z-score, time-since-last transaction, rolling average).
-2. Build an anomaly rule for category-level outliers.
-3. Try Track B in [../track-b-fullstack](../track-b-fullstack).
+### Goal
+Build a custom Copilot agent that generates Mermaid diagrams of your data pipeline.
 
-Optional stretch prompt 1:
+### Your Tasks
 
-```text
-Create fraud detection features from `df`:
-- transaction_hour (hour of day)
-- amount_zscore per customer
-- days_since_last_txn per customer
-- rolling_7d_avg amount per customer
-Return an enriched DataFrame.
-```
+1. **Create your agent file:**
 
-Optional stretch prompt 2:
+Create a new file: `agents/data_flow_agent.md`
+
+2. **Define the agent with clear instructions:**
+
+Ask Copilot to help you create the agent:
 
 ```text
-Flag customers whose average transaction in any merchant_category is more than
-3 standard deviations above that category mean. Return flagged customers.
+I want to create a Copilot agent called "Data Pipeline Documentarian" that:
+1. Analyzes Pandas pipelines and creates Mermaid flowchart documentation
+2. Identifies input data sources, transformation steps, and outputs
+3. Generates ONLY Mermaid syntax (no explanations)
+
+Create agents/data_flow_agent.md with clear instructions for this agent.
+Include an example Mermaid flowchart for a simple pipeline.
 ```
+
+3. **Test your agent:**
+
+In Copilot Chat, reference your agent:
+
+```text
+@agents/data_flow_agent.md
+Diagram the complete data pipeline in lab_exercise.py showing all transformations from financial_transactions.csv to final outputs.
+```
+
+Copilot should generate a Mermaid diagram.
+
+### Expected Outcome
+Your agent generates valid Mermaid flowchart code documenting the data pipeline.
 
 ---
 
-## Key Takeaway
+## Phase 6: Embed Diagram in README (5 min)
 
-Prompt quality directly impacts data quality and implementation speed.
+### Goal
+Add your generated diagram to the project README.
 
-Use this sequence for repeatable results:
+### Your Tasks
 
-1. Intent
-2. Context
-3. Constraints
+1. **Generate the final diagram:**
+
+Use your agent to generate one final comprehensive diagram of the entire pipeline.
+
+2. **Edit [README.md](README.md):**
+
+Find the section:
+
+```
+## Project Diagrams
+
+Paste your generated Mermaid diagram here:
+```
+
+Replace with your actual Mermaid code.
+
+3. **Preview in VS Code:**
+
+Install: [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=vstirbu.vscode-mermaid-preview)
+
+Open README.md and verify your diagram displays correctly.
+
+### Expected Outcome
+README contains your Mermaid diagram rendering correctly.
+
+---
+
+## Verification Checklist
+
+- [ ] Phase 1: Can explain the code structure clearly
+- [ ] Phase 2: Bug fixed; `python lab_exercise.py` runs without errors
+- [ ] Phase 3: Code follows team standards (type hints, constants, docstrings)
+- [ ] Phase 4: `pytest tests/test_customer_summary.py -v` passes
+- [ ] Phase 5: Custom agent generates valid Mermaid code
+- [ ] Phase 6: Diagram embedded in README and displays correctly
+
+---
+
+## Key Takeaways
+
+- **Copilot Explain**: Use to understand unfamiliar code quickly
+- **Copilot Debug**: Use specific prompts describing the issue to find bugs
+- **Copilot Refactor**: Reference team instructions to automate quality improvements
+- **Custom Prompts**: Save effective prompts for reuse on similar tasks
+- **Custom Agents**: Define agent behavior to automate specialized tasks
+
+Happy learning!
