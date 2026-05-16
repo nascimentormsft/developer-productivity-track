@@ -262,11 +262,14 @@ This simulates real-world reuse: save one prompt, adjust config, generate faster
 ### Goal
 Build a custom Copilot agent that generates Mermaid diagrams of your data pipeline.
 
+### Recommended Tool: Markdown Preview Mermaid Support
+Before creating your agent, install the **[Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)** extension. This will be a key tool for previewing and validating the Mermaid diagrams your agent generates.
+
 ### Your Tasks
 
 1. **Create your agent file:**
 
-Create a new file: `agents/data_flow_agent.md`
+Create a new file: `.github/agents/data-pipeline-documentarian.agent.md`
 
 2. **Define the agent with clear instructions:**
 
@@ -277,17 +280,16 @@ I want to create a Copilot agent called "Data Pipeline Documentarian" that:
 1. Analyzes Pandas pipelines and creates Mermaid flowchart documentation
 2. Identifies input data sources, transformation steps, and outputs
 3. Generates ONLY Mermaid syntax (no explanations)
+4. Users will use Markdown Preview Mermaid Support extension to preview the generated diagrams
 
-Create agents/data_flow_agent.md with clear instructions for this agent.
 Include an example Mermaid flowchart for a simple pipeline.
 ```
 
 3. **Test your agent:**
 
-In Copilot Chat, reference your agent:
+In Copilot Chat, reference your data-pipeline-documentarian agent:
 
 ```text
-@agents/data_flow_agent.md
 Diagram the complete data pipeline in lab_exercise.py showing all transformations from financial_transactions.csv to final outputs.
 ```
 
