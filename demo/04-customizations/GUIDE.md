@@ -140,3 +140,6 @@ This is your team's institutional knowledge, encoded, versioned, and shareable.
 |-------|---------------|
 | Instructions | [Adding repository custom instructions for GitHub Copilot](https://docs.github.com/en/copilot/customizing-copilot/adding-repository-custom-instructions-for-github-copilot) |
 | Customize Copilot CLI | [Overview of customizing GitHub Copilot CLI](https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/overview) |
+| Customize | [Copilot customization cheat sheet](https://docs.github.com/en/copilot/reference/customization-cheat-sheet) |
+
+
