@@ -1,17 +1,17 @@
 
 # Track B: Full-Stack API Lab
 
-Welcome to the Full-Stack API Lab! This lab is designed to help you practice code exploration, debugging, refactoring, prompt engineering, and documentation automation using Copilot.
+Welcome to the Full-Stack API Lab! This lab is designed to mirror the learning flow in Track A while keeping the full-stack API experience: code exploration, debugging, refactoring, prompt engineering, and documentation automation with Copilot.
 
 ## Quick Reference: The 6 Phases
 
 | Phase | Goal | Time | Key Activity |
 |-------|------|------|--------------|
-| 1 | Explore backend & frontend | 5 min | Use Copilot to understand API and UI code |
-| 2 | Find & fix the bug | 8-12 min | Debug and fix subtle logic error |
+| 1 | Explore backend & frontend | 5 min | Trace request/response flow and explain what is implemented vs. TODO |
+| 2 | Find & fix the bug | 8-12 min | Debug and fix a subtle logic error in summary calculation |
 | 3 | Refactor code smells | 10-15 min | Apply team instructions to improve code quality |
-| 4 | Implement repetitive features | 12-18 min | Create custom prompt to generate similar endpoints |
-| 5 | Create documentation agent | 10-15 min | Build your own Mermaid diagram agent |
+| 4 | Implement repetitive features | 12-18 min | Build a reusable prompt template for similar endpoints |
+| 5 | Create documentation agent | 10-15 min | Build a Mermaid diagram agent for the API architecture |
 | 6 | Embed diagram in README | 5 min | Paste diagram and verify |
 
 ---
@@ -48,7 +48,7 @@ Visit `http://localhost:8000/health` — you should see `{"status": "healthy"}`
 ## Phase 1: Explore Backend & Frontend Code (5 min)
 
 ### Goal
-Understand the full-stack architecture and identify what's missing or unclear.
+Understand the full-stack architecture, trace the data flow, and identify what is missing or unclear.
 
 ### Your Tasks
 
@@ -90,7 +90,7 @@ Walk through this step by step.
 ```
 
 ### Expected Outcome
-You understand the full-stack architecture and how frontend and backend communicate.
+You understand the full-stack architecture, the request/response flow, and what each layer contributes.
 
 ---
 
@@ -145,7 +145,7 @@ Make sure the endpoint returns correct statistics for ALL transactions.
 ```
 
 ### Expected Outcome
-The summary endpoint returns correct statistics. All transactions are included. Tests pass.
+The summary endpoint returns correct statistics. All relevant transactions are included. Tests pass.
 
 ---
 
@@ -241,46 +241,52 @@ Use prompt engineering to automate repetitive endpoint creation.
 
 ### Your Tasks
 
-1. **Understand the repetitive pattern:**
+1. **Spot the repeated pattern:**
 
-The `get_customer_summary` endpoint follows a pattern:
-- Filter by an ID or criteria
-- Aggregate/group data
-- Return a summary model
-- Handle 404 cases
+The `get_customer_summary` endpoint follows the same shape as the Track A aggregation exercise:
+- Filter by a specific criterion
+- Group and aggregate data
+- Return a structured summary
+- Handle empty results consistently
 
-You need to create similar endpoints for different groupings.
+Before writing the prompt, separate what stays the same from what changes:
+- What stays the same: summary shape, error handling, validation, docstrings, tests
+- What changes: route name, grouping field, query parameters, and return schema
 
-2. **Create your custom prompt in [prompts/api-summary-endpoints.md](prompts/api-summary-endpoints.md):**
+2. **Create a parameterized prompt in [prompts/api-summary-endpoints.md](prompts/api-summary-endpoints.md):**
 
-Expand the template with specific, detailed requirements:
+Use placeholders so the same template can generate multiple endpoints with only configuration changes.
 
 ```text
-I need to implement three new endpoints following the same pattern as GET /transactions/summary/{customer_id}:
+---
+description: "Generate a FastAPI endpoint for transaction summary aggregation"
+---
+Implement a Python endpoint in backend/routes/transactions.py using this configuration:
 
-1. GET /transactions/summary/by-merchant/{merchant_category}
-   - Filter transactions by merchant_category
-   - Return same summary format with merchant metrics
-   - Return 404 if no transactions found
+- Endpoint name: {endpoint_name}
+- Route: {route}
+- Input parameters: {input_parameters}
+- Filter logic: {filter_logic}
+- Group-by field: {group_by_field}
+- Aggregate fields: {aggregate_fields}
+- Return type: {return_type}
+- Output schema: {output_schema}
+- Error handling: {error_handling}
 
-2. GET /transactions/summary/by-date-range
-   - Query parameters: start_date, end_date, group_by (day|week|month)
-   - Return list of summaries grouped by the specified period
-   - Validate date format
-
-3. GET /transactions/top-merchants
-   - Return top 10 merchants by transaction count
-   - Include transaction count and total amount for each
-   - Sort by count descending
-
-Implement in backend/routes/transactions.py using the same patterns.
-Follow team coding standards: validation, docstrings, proper error handling, Pydantic models.
-Keep the existing bug fix.
+Requirements:
+- Use FastAPI and Pydantic idioms
+- Add complete type hints for parameters and return values
+- Add a Google-style docstring
+- Preserve existing behavior unless the config explicitly changes it
+- Keep output deterministic and testable
+- Follow team standards in track-b-instructions.md
 ```
+
+Then call the template with different configurations for the three new endpoints.
 
 3. **Use your custom prompt in Copilot:**
 
-Copy your custom prompt from [prompts/api-summary-endpoints.md](prompts/api-summary-endpoints.md) and paste it into Copilot Chat. Copilot will generate all three endpoints.
+Copy the template from [prompts/api-summary-endpoints.md](prompts/api-summary-endpoints.md) and paste it into Copilot Chat with the configuration you want to generate.
 
 4. **Test the implementation:**
 
@@ -289,7 +295,7 @@ cd backend
 pytest tests/test_summaries.py -v
 ```
 
-Or manually test via `http://localhost:8000/docs`
+Or manually test via `http://localhost:8000/docs`.
 
 ### Expected Outcome
 Three new endpoints implemented. Tests pass. Code follows team standards. Endpoints return correct data.
@@ -377,7 +383,7 @@ README contains your Mermaid diagram rendering correctly.
 
 ## Verification Checklist
 
-- [ ] Phase 1: Can explain the full-stack architecture clearly
+- [ ] Phase 1: Can explain the code structure clearly and trace a request end to end
 - [ ] Phase 2: Bug fixed; API returns correct summary statistics
 - [ ] Phase 3: Config created; models have validation; routes have docstrings
 - [ ] Phase 4: New endpoints implemented; `pytest tests/test_summaries.py -v` passes
