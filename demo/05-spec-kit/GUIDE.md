@@ -5,46 +5,6 @@
 
 ---
 
-## Prerequisites (before session)
-
-1. Install `uv` (required by Specify CLI):
-
-```bash
-# Windows (PowerShell)
-winget install --id astral-sh.uv -e
-
-# macOS
-brew install uv
-
-# Linux/macOS (official installer)
-curl -LsSf https://astral.sh/uv/install.sh | sh
-```
-
-2. Install Specify CLI.
-
-Replace `vX.Y.Z` with a real release tag (example: `v0.8.14`):
-
-```bash
-uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
-```
-
-Windows note: if `uv` is not recognized right after install, open a new terminal or run with the full path:
-
-```powershell
-& "$env:USERPROFILE\.local\bin\uv.exe" tool install specify-cli --from git+https://github.com/github/spec-kit.git@v0.8.14
-```
-
-3. Initialize a throwaway demo project (once):
-
-```bash
-specify init spec-kit-demo --integration copilot
-cd spec-kit-demo
-```
-
-Note: `specify init --integration copilot` installs the `/speckit.*` commands for Copilot chat.
-
----
-
 ## Step 1: Define Principles (2 min)
 
 In Copilot Chat, run:
