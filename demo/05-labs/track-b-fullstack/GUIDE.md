@@ -226,7 +226,8 @@ Keep the bug fix from Phase 2.
 
 ```bash
 cd backend
-pytest -v
+python -m pytest -v tests/test_transactions.py
+python -m pytest -v tests/test_summaries.py
 ```
 
 ### Expected Outcome
