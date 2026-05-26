@@ -20,10 +20,18 @@ brew install uv
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-2. Install Specify CLI (replace version with latest release):
+2. Install Specify CLI.
+
+Replace `vX.Y.Z` with a real release tag (example: `v0.8.14`):
 
 ```bash
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
+```
+
+Windows note: if `uv` is not recognized right after install, open a new terminal or run with the full path:
+
+```powershell
+& "$env:USERPROFILE\.local\bin\uv.exe" tool install specify-cli --from git+https://github.com/github/spec-kit.git@v0.8.14
 ```
 
 3. Initialize a throwaway demo project (once):
