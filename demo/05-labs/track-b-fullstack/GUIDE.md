@@ -385,11 +385,14 @@ Three new endpoints implemented. Tests pass. Code follows team standards. Endpoi
 ### Goal
 Build a custom Copilot agent that generates Mermaid diagrams of your API architecture.
 
+### Recommended Tool: Markdown Preview Mermaid Support
+Before creating your agent, install the **[Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid)** extension. This will be a key tool for previewing and validating the Mermaid diagrams your agent generates.
+
 ### Your Tasks
 
 1. **Create your agent file:**
 
-Create a new file: `agents/api_architecture_agent.md`
+Create a new file: `.github/agents/api-architecture-documentation.agent.md`
 
 2. **Define the agent with clear instructions:**
 
@@ -401,8 +404,9 @@ I want to create a Copilot agent called "API Architecture Documentarian" that:
 2. Shows all endpoints, HTTP methods, and Pydantic models
 3. Shows how frontend and backend communicate
 4. Generates ONLY Mermaid syntax (no explanations)
+5. Use Markdown Preview Mermaid Support to create the diagrmas
 
-Create agents/api_architecture_agent.md with clear instructions.
+Create .github/agents/api-architecture-documentation.agent.md with clear instructions.
 Include example Mermaid diagrams (flowchart and class diagram formats).
 ```
 
@@ -411,8 +415,7 @@ Include example Mermaid diagrams (flowchart and class diagram formats).
 In Copilot Chat, reference your agent:
 
 ```text
-@agents/api_architecture_agent.md
-Diagram the API architecture showing:
+Update the README.md Project Diagrams from track-b-fullstack showing:
 - All endpoints (GET /transactions, POST /transactions, GET /summary/{id}, etc.)
 - The Pydantic models and their relationships
 - How frontend and backend communicate
