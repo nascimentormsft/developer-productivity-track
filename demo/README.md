@@ -28,7 +28,12 @@ demo/
 │   └── skills/
 │       └── pandas-analysis/SKILL.md    # Part C: Domain knowledge skill
 │
-└── 05-labs/                             # Section 5: Choose Your Adventure (25 min)
+├── 05-spec-kit/                         # Section 5: Spec-to-Plan workflow (10 min)
+│   ├── GUIDE.md                         # Facilitator walk-through
+│   ├── feature_request.md               # Raw business requirement
+│   └── spec_template.md                 # Structured output template
+│
+└── 06-labs/                             # Section 6: Choose Your Adventure (25 min)
     ├── track-a-pandas/                  # Track A: Data engineering
     │   ├── generate_dataset.py          # Run once to create CSV
     │   ├── financial_transactions.csv   # 10K synthetic transactions
@@ -50,7 +55,7 @@ demo/
             └── styles.css               # Styling
 ```
 
-## Demo Flow (Facilitator Demos: Sections 1–4)
+## Demo Flow (Facilitator Demos: Sections 1–5)
 
 ### 1. Quick Win (Section 1 – 3 min)
 1. Open `01-quick-win/demo_quickwin.py` → cursor below comment → Tab to accept
@@ -73,17 +78,23 @@ Keep the repository root open as workspace root. Follow `04-customizations/demo_
 - **Part C:** Use the pandas skill for domain-aware analysis (3 min)
 - **Part D:** Agent mode + pipeline scaffolder agent (4 min)
 
-## Hands-on Labs (Section 5 – 25 min)
+### 5. Spec Kit (Section 5 – 10 min)
+Open `05-spec-kit/GUIDE.md` and run the workflow:
+1. Start from `05-spec-kit/feature_request.md`
+2. Ask Copilot to transform the request into a structured spec using `05-spec-kit/spec_template.md`
+3. Convert the approved spec into an implementation task list with acceptance criteria
+
+## Hands-on Labs (Section 6 – 25 min)
 
 Participants choose one (or both):
 
 ### Track A: Pandas & Financial Data
-- Open `05-labs/track-a-pandas/lab_exercise.py`
+- Open `06-labs/track-a-pandas/lab_exercise.py`
 - Generate the dataset first: `python generate_dataset.py`
 - Practice prompt progression on data engineering tasks
 
 ### Track B: Full-Stack Application
-- Open `05-labs/track-b-fullstack/`
+- Open `06-labs/track-b-fullstack/`
 - Install: `pip install -r requirements.txt`
 - Start backend: `cd backend && uvicorn main:app --reload`
 - Use Agent mode to add features across backend + frontend
@@ -92,7 +103,7 @@ Participants choose one (or both):
 
 - [ ] Python 3.9+ available
 - [ ] `pip install pandas numpy pytest fastapi uvicorn httpx` completed
-- [ ] `financial_transactions.csv` generated in `05-labs/track-a-pandas/`
+- [ ] `financial_transactions.csv` generated in `06-labs/track-a-pandas/`
 - [ ] Track B backend starts successfully (`uvicorn main:app --reload`)
 - [ ] VS Code font size ≥ 16
 - [ ] Copilot extension active and responding

@@ -252,7 +252,7 @@ Show how customizations replace repetitive tasks with reusable team assets, usin
 | VS Code with Copilot extension (latest) | ☐ |
 | Python 3.9+ environment | ☐ |
 | pandas, numpy, pytest, fastapi, uvicorn, httpx installed | ☐ |
-| Synthetic dataset generated (`05-labs/track-a-pandas/`) | ☐ |
+| Synthetic dataset generated (`06-labs/track-a-pandas/`) | ☐ |
 | Demo files 01–04 pre-prepared and tested | ☐ |
 | `04-customizations/` folder openable as workspace root | ☐ |
 | Track B backend starts (`uvicorn main:app --reload`) | ☐ |

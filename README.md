@@ -47,7 +47,7 @@ pip install pandas numpy pytest fastapi uvicorn httpx
 ### 4. Generate the Synthetic Dataset (Track A lab)
 
 ```bash
-cd demo/05-labs/track-a-pandas
+cd demo/06-labs/track-a-pandas
 python generate_dataset.py
 ```
 
@@ -65,8 +65,9 @@ python -c "import pandas; import numpy; import fastapi; print('Ready!')"
 | 2 | Prompting Fundamentals | 15 min | `demo/02-prompt-progression/` |
 | 3 | Developer Productivity Patterns | 15 min | `demo/03-productivity-patterns/` |
 | 4 | Customizations | 15 min | `demo/04-customizations/` |
-| 5 | Hands-on Labs (choose your track) | 28 min | `demo/05-labs/` |
-| 6 | Wrap-up | 5 min | Slides only |
+| 5 | Spec Kit Demo | 10 min | `demo/05-spec-kit/` |
+| 6 | Hands-on Labs (choose your track) | 28 min | `demo/06-labs/` |
+| 7 | Wrap-up | 5 min | Slides only |
 
 ## How to Use
 
@@ -76,14 +77,14 @@ python -c "import pandas; import numpy; import fastapi; print('Ready!')"
 2. **Slides** – Follow the storyline in `workshop/02-slide-storyline-outline.md` to build your deck.
 3. **Demos** – Follow `workshop/03-demo-plan.md`. Each demo file has presenter instructions as comments at the top.
 4. **Prompts** – Reference `workshop/05-prompt-library.md` for reusable prompts you can share with participants.
-5. **Labs** – Section 5 is "Choose Your Adventure" — participants pick Track A (Pandas) or Track B (Full-Stack), or both.
+5. **Labs** – Section 6 is "Choose Your Adventure" — participants pick Track A (Pandas) or Track B (Full-Stack), or both.
 
 ### For Participants
 
 1. Clone this repo and complete the setup above.
 2. Pick your lab track:
-   - **Track A (Pandas):** Open `demo/05-labs/track-a-pandas/lab_exercise.py`
-   - **Track B (Full-Stack):** Open `demo/05-labs/track-b-fullstack/lab_instructions.py`
+   - **Track A (Pandas):** Open `demo/06-labs/track-a-pandas/lab_exercise.py`
+   - **Track B (Full-Stack):** Open `demo/06-labs/track-b-fullstack/lab_instructions.py`
 3. Follow the instructions in the file — use Copilot Chat to complete each part.
 4. Try the stretch goals or switch tracks if you finish early.
 
@@ -105,7 +106,8 @@ python -c "import pandas; import numpy; import fastapi; print('Ready!')"
 │   ├── 02-prompt-progression/             # Bad → better → best prompt demo
 │   ├── 03-productivity-patterns/          # Refactoring, debugging, testing demos
 │   ├── 04-customizations/                 # Instructions, prompts, skills, agents
-│   └── 05-labs/                           # Hands-on labs
+│   ├── 05-spec-kit/                       # Spec-to-plan workflow demo
+│   └── 06-labs/                           # Hands-on labs
 │       ├── track-a-pandas/                # Data engineering with pandas
 │       └── track-b-fullstack/             # FastAPI backend + frontend
 │
