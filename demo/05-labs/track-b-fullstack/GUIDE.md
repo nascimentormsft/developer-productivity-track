@@ -311,14 +311,6 @@ Implement a Python endpoint in backend/routes/transactions.py using this configu
   ]
 }
 - Error handling: Return 404 if the customer has no transactions
-
-Requirements:
-- Use FastAPI and Pydantic idioms
-- Add complete type hints for parameters and return values
-- Add a Google-style docstring
-- Preserve existing behavior unless the config explicitly changes it
-- Keep output deterministic and testable
-- Follow team standards in track-b-instructions.md
 ```
 
 **Sample 2: Summary by merchant category for a customer**
@@ -344,14 +336,6 @@ Implement a Python endpoint in backend/routes/transactions.py using this configu
   ]
 }
 - Error handling: Return 404 if the customer has no transactions
-
-Requirements:
-- Use FastAPI and Pydantic idioms
-- Add complete type hints for parameters and return values
-- Add a Google-style docstring
-- Preserve existing behavior unless the config explicitly changes it
-- Keep output deterministic and testable
-- Follow team standards in track-b-instructions.md
 ```
 
 **Sample 3: Summary by currency across all transactions**
@@ -376,14 +360,6 @@ Implement a Python endpoint in backend/routes/transactions.py using this configu
   ]
 }
 - Error handling: Return an empty summary list if there are no transactions
-
-Requirements:
-- Use FastAPI and Pydantic idioms
-- Add complete type hints for parameters and return values
-- Add a Google-style docstring
-- Preserve existing behavior unless the config explicitly changes it
-- Keep output deterministic and testable
-- Follow team standards in track-b-instructions.md
 ```
 
 3. **Use your custom prompt in Copilot:**
