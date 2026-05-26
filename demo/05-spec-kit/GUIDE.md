@@ -7,7 +7,19 @@
 
 ## Prerequisites (before session)
 
-1. Install `uv` (required by Specify CLI).
+1. Install `uv` (required by Specify CLI):
+
+```bash
+# Windows (PowerShell)
+winget install --id astral-sh.uv -e
+
+# macOS
+brew install uv
+
+# Linux/macOS (official installer)
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
 2. Install Specify CLI (replace version with latest release):
 
 ```bash
