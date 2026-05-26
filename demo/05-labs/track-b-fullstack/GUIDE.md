@@ -285,6 +285,107 @@ Requirements:
 
 Then call the template with different configurations for the three new endpoints.
 
+If participants want a faster path, give them these copy/paste-ready samples to use with the template.
+
+**Sample 1: Summary by transaction type for a customer**
+
+```text
+Implement a Python endpoint in backend/routes/transactions.py using this configuration:
+
+- Endpoint name: get_customer_transaction_type_summary
+- Route: /summary/{customer_id}/by-transaction-type
+- Input parameters: customer_id: str
+- Filter logic: Select transactions where t.customer_id == customer_id
+- Group-by field: transaction_type
+- Aggregate fields: count of transactions, sum of amount, average of amount
+- Return type: dict
+- Output schema: {
+  "customer_id": str,
+  "summary": [
+    {
+      "transaction_type": str,
+      "total_transactions": int,
+      "total_amount": float,
+      "average_amount": float
+    }
+  ]
+}
+- Error handling: Return 404 if the customer has no transactions
+
+Requirements:
+- Use FastAPI and Pydantic idioms
+- Add complete type hints for parameters and return values
+- Add a Google-style docstring
+- Preserve existing behavior unless the config explicitly changes it
+- Keep output deterministic and testable
+- Follow team standards in track-b-instructions.md
+```
+
+**Sample 2: Summary by merchant category for a customer**
+
+```text
+Implement a Python endpoint in backend/routes/transactions.py using this configuration:
+
+- Endpoint name: get_customer_merchant_category_summary
+- Route: /summary/{customer_id}/by-merchant-category
+- Input parameters: customer_id: str
+- Filter logic: Select transactions where t.customer_id == customer_id
+- Group-by field: merchant_category
+- Aggregate fields: count of transactions, sum of amount
+- Return type: dict
+- Output schema: {
+  "customer_id": str,
+  "summary": [
+    {
+      "merchant_category": str,
+      "total_transactions": int,
+      "total_amount": float
+    }
+  ]
+}
+- Error handling: Return 404 if the customer has no transactions
+
+Requirements:
+- Use FastAPI and Pydantic idioms
+- Add complete type hints for parameters and return values
+- Add a Google-style docstring
+- Preserve existing behavior unless the config explicitly changes it
+- Keep output deterministic and testable
+- Follow team standards in track-b-instructions.md
+```
+
+**Sample 3: Summary by currency across all transactions**
+
+```text
+Implement a Python endpoint in backend/routes/transactions.py using this configuration:
+
+- Endpoint name: get_currency_summary
+- Route: /summary/by-currency
+- Input parameters: none
+- Filter logic: Use all transactions in memory
+- Group-by field: currency
+- Aggregate fields: count of transactions, sum of amount
+- Return type: dict
+- Output schema: {
+  "summary": [
+    {
+      "currency": str,
+      "total_transactions": int,
+      "total_amount": float
+    }
+  ]
+}
+- Error handling: Return an empty summary list if there are no transactions
+
+Requirements:
+- Use FastAPI and Pydantic idioms
+- Add complete type hints for parameters and return values
+- Add a Google-style docstring
+- Preserve existing behavior unless the config explicitly changes it
+- Keep output deterministic and testable
+- Follow team standards in track-b-instructions.md
+```
+
 3. **Use your custom prompt in Copilot:**
 
 Copy the template from [prompts/api-summary-endpoints.md](prompts/api-summary-endpoints.md) and paste it into Copilot Chat with the configuration you want to generate.
@@ -293,7 +394,7 @@ Copy the template from [prompts/api-summary-endpoints.md](prompts/api-summary-en
 
 ```bash
 cd backend
-pytest tests/test_summaries.py -v
+python -m pytest -v tests/test_summaries.py
 ```
 
 Or manually test via `http://localhost:8000/docs`.
