@@ -1,67 +1,103 @@
-# Spec Kit Demo: From Request to Build Plan
+# Spec Kit Demo: github/spec-kit Workflow
 
 **Time:** ~10 min  
-**Goal:** Show how Copilot can convert an unstructured request into a structured, reviewable implementation spec.
+**Goal:** Demonstrate the real `github/spec-kit` workflow inside Copilot, from intent to executable task list.
 
 ---
 
-## Step 1: Start from a Raw Request (2 min)
+## Prerequisites (before session)
 
-1. Open [feature_request.md](feature_request.md)
-2. Ask Copilot Chat:
+1. Install `uv` (required by Specify CLI).
+2. Install Specify CLI (replace version with latest release):
 
-```text
-Transform this request into a complete engineering spec.
-Use the structure from 05-spec-kit/spec_template.md.
-Keep all assumptions explicit and add measurable acceptance criteria.
+```bash
+uv tool install specify-cli --from git+https://github.com/github/spec-kit.git@vX.Y.Z
 ```
 
-3. Review the output in chat.
+3. Initialize a throwaway demo project (once):
 
-**What to notice:**
-- Did it preserve the real business constraint (decision support only)?
-- Did it produce measurable criteria and not vague goals?
+```bash
+specify init spec-kit-demo --integration copilot
+cd spec-kit-demo
+```
+
+Note: `specify init --integration copilot` installs the `/speckit.*` commands for Copilot chat.
 
 ---
 
-## Step 2: Tighten the Spec (4 min)
+## Step 1: Define Principles (2 min)
 
-Ask a second prompt:
+In Copilot Chat, run:
 
 ```text
-Critique the spec you generated.
-Identify ambiguous requirements, missing edge cases, and test gaps.
-Then produce a revised version with explicit error handling.
+/speckit.constitution Create principles focused on code quality, testing standards, UX consistency, and performance requirements.
 ```
 
 **What to notice:**
-- Ambiguous terms replaced with concrete definitions
-- Edge cases listed (missing profile data, unsupported currency, stale behavior window)
-- Acceptance criteria rewritten in Given/When/Then format
+- Principles become persistent guardrails for all downstream spec, plan, and task generation.
 
 ---
 
-## Step 3: Generate an Execution Plan (4 min)
+## Step 2: Create the Spec (3 min)
 
-Ask a final prompt:
+1. Open [feature_request.md](feature_request.md).
+2. Paste the business request into:
 
 ```text
-Create a delivery plan from this spec with:
-1) implementation tasks,
-2) testing tasks,
-3) rollout tasks,
-4) owner role for each task,
-5) done criteria.
+/speckit.specify <paste the transfer-guard request>
+```
+
+3. Optionally refine unclear areas with:
+
+```text
+/speckit.clarify
 ```
 
 **What to notice:**
-- The plan separates build, test, and rollout work
-- Work is scoped into independently reviewable tasks
-- Done criteria reduces rework in implementation
+- The command focuses on the "what" and "why" first.
+- Ambiguities are surfaced before implementation details.
+
+---
+
+## Step 3: Plan and Task Breakdown (3 min)
+
+1. Open [spec_template.md](spec_template.md) and use it as your architecture/constraint prompt for planning.
+2. Run:
+
+```text
+/speckit.plan <paste stack and constraints prompt>
+```
+
+3. Generate implementation tasks:
+
+```text
+/speckit.tasks
+```
+
+4. Optional quality gate:
+
+```text
+/speckit.analyze
+```
+
+**What to notice:**
+- Output is separated into artifacts: spec, technical plan, then actionable tasks.
+- This creates a review point before coding starts.
+
+---
+
+## Step 4: Execute (2 min)
+
+Use:
+
+```text
+/speckit.implement
+```
+
+For workshops, you can stop at `/speckit.tasks` and discuss generated task quality instead of full implementation.
 
 ---
 
 ## Key Message for Participants
 
-A good spec is a productivity multiplier.
-Copilot helps you move from "idea" to "execution-ready plan" in minutes, while keeping assumptions and acceptance criteria visible.
+`github/spec-kit` is not just a prompt template. It is a structured spec-driven workflow with reusable commands that turn intent into governed, executable delivery artifacts.

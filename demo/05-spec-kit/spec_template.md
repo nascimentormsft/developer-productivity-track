@@ -1,41 +1,34 @@
-# Spec Template
+# Plan Prompt for `/speckit.plan`
 
-## 1. Problem Statement
-- Business problem:
-- User pain point:
-- Desired outcome:
+Use this content as the input prompt when running `/speckit.plan` after `/speckit.specify`.
 
-## 2. User Stories
-- As a <role>, I want <capability>, so that <benefit>.
+## Architecture and Stack Constraints
 
-## 3. Functional Requirements
-- FR-001:
-- FR-002:
-- FR-003:
+- Backend: Python + FastAPI
+- Data: PostgreSQL
+- Messaging: none in v1
+- Hosting target: Azure App Service
+- Authentication: Microsoft Entra ID (OIDC)
+- Observability: structured logs + request IDs
 
-## 4. Non-Functional Requirements
-- NFR-001 Performance:
-- NFR-002 Reliability:
-- NFR-003 Security/Compliance:
+## Design Constraints
 
-## 5. Input and Output Contract
-- Inputs:
-- Outputs:
-- Error cases:
+- Keep v1 as decision support only (no auto-blocking transfers).
+- P95 latency for risk evaluation under 300 ms.
+- Risk explanations must be plain language and auditable.
+- Avoid overfitting to static thresholds; make thresholds configurable.
 
-## 6. Acceptance Criteria
-- AC-001 Given/When/Then
-- AC-002 Given/When/Then
-- AC-003 Given/When/Then
+## Implementation Preferences
 
-## 7. Out of Scope
--
+- Start with modular service boundaries:
+	- `risk_scoring`
+	- `explanations`
+	- `recommendations`
+- Add unit tests for scoring and explanation generation before integration wiring.
+- Add API contract tests for request/response schemas.
 
-## 8. Implementation Plan (First Pass)
-- Task 1:
-- Task 2:
-- Task 3:
+## Delivery Expectations
 
-## 9. Risks and Open Questions
-- Risk:
-- Question:
+- Produce phased implementation plan with milestones.
+- Include explicit testing strategy per milestone.
+- Call out rollout and rollback considerations.

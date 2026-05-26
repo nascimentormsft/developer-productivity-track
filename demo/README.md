@@ -28,10 +28,10 @@ demo/
 │   └── skills/
 │       └── pandas-analysis/SKILL.md    # Part C: Domain knowledge skill
 │
-├── 05-spec-kit/                         # Section 5: Spec-to-Plan workflow (10 min)
+├── 05-spec-kit/                         # Section 5: github/spec-kit workflow (10 min)
 │   ├── GUIDE.md                         # Facilitator walk-through
-│   ├── feature_request.md               # Raw business requirement
-│   └── spec_template.md                 # Structured output template
+│   ├── feature_request.md               # Input for /speckit.specify
+│   └── spec_template.md                 # Input for /speckit.plan
 │
 └── 06-labs/                             # Section 6: Choose Your Adventure (25 min)
     ├── track-a-pandas/                  # Track A: Data engineering
@@ -80,9 +80,9 @@ Keep the repository root open as workspace root. Follow `04-customizations/demo_
 
 ### 5. Spec Kit (Section 5 – 10 min)
 Open `05-spec-kit/GUIDE.md` and run the workflow:
-1. Start from `05-spec-kit/feature_request.md`
-2. Ask Copilot to transform the request into a structured spec using `05-spec-kit/spec_template.md`
-3. Convert the approved spec into an implementation task list with acceptance criteria
+1. Initialize with `specify init <project> --integration copilot`
+2. Use `/speckit.constitution` and `/speckit.specify` with `05-spec-kit/feature_request.md`
+3. Use `/speckit.plan` with `05-spec-kit/spec_template.md`, then run `/speckit.tasks`
 
 ## Hands-on Labs (Section 6 – 25 min)
 
